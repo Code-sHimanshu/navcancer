@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Lung Cancer Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+<body>
+  
+
+  <!-- Header -->
+    <div class="section-header" data-aos="fade-down">
+    <h1>ABOUT US</h1>
+  </div>
+  <!-- Navigation Bar (Optional Include From index.html) -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="http://127.0.0.1:5501/index.html" class="nav-title">Home</a>
+      </li>
+
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="http://127.0.0.1:5501/about.html" class="dropdown-item">History</a></li>
+              <li><a href="http://127.0.0.1:5501/profile.html" class="dropdown-item">Profile</a></li>
+              <li><a href="http://127.0.0.1:5501/faq.html" class="dropdown-item">FAQs</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('cancer-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+    <!-- SERVICES OFFERED -->
+    <li class="nav-item has-dropdown">
+      <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+        <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+        <div class="dropdown" id="faicilities-dropdown">
+          <ul class="dropdown-list" id="faicilities-options">
+            <li>AI based Prediction</li>
+            <li>Connect with experts</li>
+            <li>Research & Development</li>
+            <li>Government Schemes</li>
+          </ul>
+          <button class="add-btn" onclick="addOption('faicilities-options')">+ Add more</button>
+        </div>
+      </div>
+    </li>
+
+      <!-- STAY-FIT -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'fit-dropdown', this)">
+          <span class="nav-title">Hospitals <span class="arrow">▼</span></span>
+          <div class="dropdown" id="fit-dropdown">
+            <ul class="dropdown-list" id="fit-options">
+              <li><a class="dropdown-item" href="https://tmc.gov.in" target="_blank">Tata Memorial Hospital</a></li>
+              <li><a class="dropdown-item" href="https://www.aiims.edu/en.html" target="_blank">AIIMS Delhi</a></li>
+              <li><a class="dropdown-item" href="https://www.cancerinstitutewia.in" target="_blank">Cancer Institute (WIA)</a></li>
+              <li><a class="dropdown-item" href="https://www.apollohospitals.com" target="_blank">Apollo Cancer Centre</a></li>
+              <li><a class="dropdown-item" href="https://www.rgcirc.org/" target="_blank">RGCI Delhi</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('fit-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+        <!-- Adiminstration -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'admin-dropdown', this)">
+            <span class="nav-title">Administration<span class="arrow">▼</span></span>
+            <div class="dropdown" id="admin-dropdown">
+              <ul class="dropdown-list" id="admin-options">
+                <li><a class="dropdown-item" href="http://127.0.0.1:5501/board.html">Meet the Board</a></li>
+              </ul>
+              <button class="add-btn" onclick="addOption('admin-options')">+ Add more</button>
+            </div>
+          </div>
+        </li>
+
+      <!-- OTHER STATIC LINKS -->
+      <li class="nav-item"><a class="nav-title" href="http://127.0.0.1:5501/events.html">Events</a></li>
+      <li class="nav-item"><a class="nav-title" href="http://127.0.0.1:5501/disclaimer.html">Disclaimer</a></li>
+      <<li class="nav-item"><a class="nav-title" href="http://127.0.0.1:5501/gallery.html">Gallery</a></li>
+       
+      
+      <!-- main website -->
+       <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">Main Website<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
+              <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
+              <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
+              <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
+              <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
+              <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
+              <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
+              <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('main-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ICPC Section -->
+<!-- ICPC & SHUATS Tabs Section -->
+<div class="tabs-container container" data-aos="fade-up" data-aos-delay="100">
+    <div class="tabs-header">
+      <button class="tab-btn active" onclick="openTab(event, 'icpc-tab')">ICPC</button>
+      <button class="tab-btn" onclick="openTab(event, 'shuats-tab')">SHUATS</button>
+    </div>
+  
+    <div id="icpc-tab" class="tab-content active">
+      <div class="text-center">
+        <img src="assets/logo.jpg" alt="ICPC Logo" class="logo" />
+        <div class="unite4cancer-title">Unite4Cancer</div>
+      </div>
+  
+      <div class="blue-bg mt-4">
+        <p>
+          ICPC is a coalition of the willing, of all those who share the ambition to improve access to cancer care for patients everywhere, and who understand that cooperation makes the goal more attainable.
+        </p>
+      </div>
+  
+      <h3 class="section-title mt-5">Who we are</h3>
+      <p>
+        The International Cancer Patients Coalition is a coalition of stakeholders across the world dedicated to promoting the best and most innovative access to care for cancer patients everywhere, and in a timely manner.
+        
+        ICPC is a genuinely multi-stakeholder non-profit organisation with no prejudices – and no patience with discussion or politics without actions.
+        
+        ICPC is a coalition of the willing, of all those who share the ambition to improve access to cancer care for patients everywhere, and who understand that cooperation makes the goal more attainable.
+        
+        ICPC is a one-stop shop to engage with stakeholders across different regions through different high level engagement mechanisms, from academic publications to hackathons, with the overall aim of increasing innovation literacy among all stakeholders and at institutional level, for effective policy shaping to influence the global approach to cancer care.</p>
+        <br>
+        <p>ICPC facilitates cross-fertilisation between all stakeholders to highlight where barriers exist and suggest where solutions lie, to alert policy makers to the needs and to press for action. It is determined to see institutional frameworks ensure adequate services and rational allocation of resources to support healthcare systems delivering innovation for the benefit of patients and societies. By purposely involving all stakeholders, from patients to researchers, politicians and payers, hospitals and data scientists, public and private sectors, ICPC is the embodiment of realistic recognition that no great results are possible without collective effort, and no single group of stakeholders is capable of meeting the magnitude of the challenge cancer poses.</p>
+        <br>
+        <p>
+            In the video below, Denis Horgan, ICPC’s Secretary General, gives valuable insights on the fundamentals and values that are at the base of the organization and gives further information about its structure.</p>
+  
+      <iframe src="https://www.youtube.com/embed/fpyyZNakxVU" title="ICPC Video" allowfullscreen></iframe>
+  
+      <div class="grey-bg mt-4">
+        <p>
+            ICPC functions as a meeting of minds on what needs to be done, and as a fulcrum for action so as to achieve the greatest impact on the ground.
+        </p>
+      </div>
+
+      <h3 class="section-title mt-5">What do we offer</h3>
+      <p>Many of the current cancer organisations are providing great services in their chosen field. But each is catering to its specific subject area and geography</p>
+      <br>
+      <p>ICPC is addressing the quest to have across the world coalitions of professionals,
+        patients and decision-makers dedicated to patient diagnosis and care, and insistent on boosting understanding of disease and addressing delays in access to optimal care.</p>
+  
+      <a href="https://unite4cancer.com/" class="btn-linkout" target="_blank">Visit ICPC Website</a>
+    </div>
+  
+    <div id="shuats-tab" class="tab-content">
+      <div class="text-center">
+        <img src="assets/shuatslogo.jpg" alt="SHUATS Logo" class="logo" />
+        <div class="unite4cancer-title">Welcome to Sam Higginbottom University of Agriculture, Technology & Sciences (SHUATS)</div>
+      </div>
+
+      <div class="blue-bg mt-4" >
+        <p>
+            A Premier Institution Committed to Excellence in Education, Research, and Development
+        </p>
+      </div>
+
+      <h5 class="section-title">Who we are</h5>
+      <p>
+        The Sam Higginbottom University of Agriculture, Technology And Sciences (SHUATS) is established under U.P. Act No. 35 of 2016, as passed by the Uttar Pradesh Legislature. SHUATS is established and administered by the Ecumenical Minority Christian Society namely the Sam Higginbottom Educational and Charitable Society registered under the Society Registration Act, 1860 in the State of Uttar Pradesh. The University is a united endeavour of the Christian community in India for promoting rural life and development in conformity with the Christian vision of human kind and the creation. The University is held in trust as a common ecumenical heritage by the Christian Churches and Christian Organizations of the country. It seeks to be a national centre of professional excellence in education and service to the people with the participation of students and faculty members from all over India.
+      </p>
+  
+      <h5 class="section-title">Core Values</h5>
+      <ul>
+        <li>Responsible stewardship of the environment and its resources</li>
+        <li>Sustainable development</li>
+        <li>Linkage of learning and research to the needs and life of the people</li>
+        <li>Justice to minorities, and other weaker sections...</li>
+        <li>Holistic formation of the human person...</li>
+      </ul>
+
+      <iframe src="https://www.youtube.com/embed/UpWkGQErSoY" title="SHUATS Video" allowfullscreen></iframe>
+  
+      <h5 class="section-title">Legacy & Achievements</h5>
+      <p>In all of the above, the University helps the young and old...</p>
+      <p>Dr. Sam Higginbottom established Allahabad Agricultural Institute (AAI) in 1910...</p>
+      <p>On 15th March 2000, the Central Government declared AAI as Deemed University...</p>
+      <p>In 2016, SHIATS was upgraded and reconstituted as SHUATS...</p>
+      <p>The University offers:</p>
+      <ul>
+        <li>42 Undergraduate Programs</li>
+        <li>101 Postgraduate Programs</li>
+        <li>16 Diploma Programs</li>
+        <li>Doctoral Programs in Various Disciplines</li>
+      </ul>
+
+      <div class="grey-bg mt-4">
+        <p>
+            SHUATS aims to empower students with practical skills, innovative research, and leadership training. We maintain strong ties with industries and multinational corporations, offering students ample opportunities for career growth.
+        </p>
+      </div>
+      <a href="https://shuats.edu.in/index.asp" class="btn-linkout" target="_blank">Visit SHUATS Website</a>
+    </div>
+  </div>
+  
+
+
+  <!-- Footer will be added by you -->
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>CancerIndia</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Disclaimer</a></li>
+          <li><a href="#">AIM</a></li>
+          <li><a href="#">Sitemap</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Website Policies</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact-info">
+        <h3>CONTACT INFO</h3>
+        <p><strong>ICMR-National Institute of Cancer Prevention and Research</strong><br>
+          Ministry of Health and Family Welfare, Government of India</p>
+        <p><strong>Address:</strong><br>
+          I – 7, Sector – 39, NOIDA,<br>
+          Distt. Gautam Buddha Nagar, U.P – 201301, INDIA</p>
+        <p><strong>Phone:</strong> +91 – 120 – 2446938<br>
+          PABX: 2446900, Fax: +91 – 120 – 2579473</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © 2021 NICPR-ICMR</p>
+    </div>
+  </footer>
+  
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+</body>
+</html>

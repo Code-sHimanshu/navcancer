@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lung Cancer Prediction System</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- 🔵 HEADER SECTION -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="http://127.0.0.1:5501/index.html"><img src="assets/logo.jpg" alt="India Against Cancer" class="logo"/></a>
+    </div>
+    <div class="header-right">
+      <h1>International Cancer Patient Coalition</h1>
+    </div>    
+  </header>
+
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="http://127.0.0.1:5501/index.html" class="nav-title">Home</a>
+      </li>
+
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="http://127.0.0.1:5501/about.html" class="dropdown-item">History</a></li>
+              <li><a href="http://127.0.0.1:5501/profile.html" class="dropdown-item">Profile</a></li>
+              <li><a href="http://127.0.0.1:5501/faq.html" class="dropdown-item">FAQs</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('cancer-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+    <!-- SERVICES OFFERED -->
+    <li class="nav-item has-dropdown">
+      <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+        <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+        <div class="dropdown" id="faicilities-dropdown">
+          <ul class="dropdown-list" id="faicilities-options">
+            <li>AI based Prediction</li>
+            <li>Connect with experts</li>
+            <li>Research & Development</li>
+            <li>Government Schemes</li>
+          </ul>
+          <button class="add-btn" onclick="addOption('faicilities-options')">+ Add more</button>
+        </div>
+      </div>
+    </li>
+
+      <!-- STAY-FIT -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'fit-dropdown', this)">
+          <span class="nav-title">Hospitals <span class="arrow">▼</span></span>
+          <div class="dropdown" id="fit-dropdown">
+            <ul class="dropdown-list" id="fit-options">
+              <li><a class="dropdown-item" href="https://tmc.gov.in" target="_blank">Tata Memorial Hospital</a></li>
+              <li><a class="dropdown-item" href="https://www.aiims.edu/en.html" target="_blank">AIIMS Delhi</a></li>
+              <li><a class="dropdown-item" href="https://www.cancerinstitutewia.in" target="_blank">Cancer Institute (WIA)</a></li>
+              <li><a class="dropdown-item" href="https://www.apollohospitals.com" target="_blank">Apollo Cancer Centre</a></li>
+              <li><a class="dropdown-item" href="https://www.rgcirc.org/" target="_blank">RGCI Delhi</a></li>
+
+            </ul>
+            <button class="add-btn" onclick="addOption('fit-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+         <!-- Adiminstration -->
+         <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'admin-dropdown', this)">
+            <span class="nav-title">Administration<span class="arrow">▼</span></span>
+            <div class="dropdown" id="admin-dropdown">
+              <ul class="dropdown-list" id="admin-options">
+                <li><a class="dropdown-item" href="http://127.0.0.1:5501/board.html">Meet the Board</a></li>
+              </ul>
+              <button class="add-btn" onclick="addOption('admin-options')">+ Add more</button>
+            </div>
+          </div>
+        </li>
+      <!-- OTHER STATIC LINKS -->
+   
+      <li class="nav-item"><a class="nav-title" href="http://127.0.0.1:5501/events.html">Events</a></li>
+      <li class="nav-item"><a class="nav-title" href="http://127.0.0.1:5501/disclaimer.html">Disclaimer</a></li>
+      <li class="nav-item"><a class="nav-title" href="http://127.0.0.1:5501/gallery.html">Gallery</a></li>
+      
+      <!-- main website -->
+       <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">Main Website<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
+              <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
+              <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
+              <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
+              <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
+              <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
+              <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
+              <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('main-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+<!-- ✨ SLOGANS HERO -->
+<div class="slogan-hero">
+  <h2 class="hero-title">“Early Detection Saves Lives.”</h2>
+  <p class="hero-subtitle">Let’s spread awareness, break the silence, and fight cancer with knowledge & kindness.</p>
+</div>
+
+<!-- ✨ SLOGANS SECTION -->
+<div class="slogan-bg">
+  <div class="slogan-container">
+    <div class="slogan">🎗 Fight cancer with hope and heart</div>
+    <div class="slogan">🎗 Awareness today, a cure tomorrow</div>
+    <div class="slogan">🎗 Early Detection Is A Better Choice</div>
+    <div class="slogan">🎗 Awareness Is Power</div>
+  </div>
+</div>
+
+
+  <!-- 🔶 MIDDLE SECTION -->
+   <div class="section-wrapper">
+  <section class="middle-section">
+    <div class="info-section" style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+  
+      <!-- YouTube Video -->
+      <div class="info-video" style="flex: 1;">
+        <iframe width="100%" height="250" src="https://www.youtube.com/embed/1Gc8lR1J6kc" frameborder="0" allowfullscreen></iframe>
+      </div>
+  
+      <!-- Text -->
+      <div class="info-text" style="flex: 1; padding: 0 15px;">
+        <h2>India Battles Cancer</h2>
+        <p>“India Battles Cancer” is a portal that provides information on the leading cancers in India with a major focus on awareness, prevention and treatment of these cancers.</p>
+        <a href="#" class="read-more">Read More...</a>
+      </div>
+  
+      <!-- Mini Carousel -->
+      <div class="mini-carousel" style="flex: 1;">
+        <div class="carousel-card active">
+          <img src="assets/breast_survivor.jpg" alt="Breast Cancer Survivor" />
+        </div>
+        <div class="carousel-card">
+          <img src="assets/pink_ribbon.jpg" alt="Awareness Ribbon" />
+        </div>
+        <div class="carousel-card">
+          <img src="assets/healthy_lifestyle.jpg" alt="Healthy Lifestyle" />
+        </div>
+        <div class="carousel-controls">
+          <button onclick="switchMiniSlide(-1)">❮</button>
+          <button onclick="switchMiniSlide(1)">❯</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 🔷 INFORMATION CARDS SECTION -->
+ <div class="section-wrapper">
+<section class="info-cards-section" style="padding: 40px 20px;">
+    <div class="cards-container" style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+
+      <!-- Card 1 -->
+      <div class="info-card" style="flex: 1; min-width: 280px; border: 2px dashed orange; padding: 15px; text-align: center;">
+        <img src="assets/healthcare.jpg" alt="Cancer Treatment" style="width: 100%; height: 160px; object-fit: cover;" />
+        <h3 style="margin-top: 10px;">Cancer Treatment</h3>
+        <p>Government centers in India providing cancer treatment</p>
+        <a href="#" style="color: #004aad; font-weight: bold;">Read More...</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="info-card" style="flex: 1; min-width: 280px; border: 2px dashed orange; padding: 15px; text-align: center;">
+        <img src="assets/financial_aid.jpg" alt="Financial Aid" style="width: 100%; height: 160px; object-fit: cover;" />
+        <h3 style="margin-top: 10px;">Financial Aid</h3>
+        <p>State Government and Central Government funding for cancer</p>
+        <a href="#" style="color: #004aad; font-weight: bold;">Read More...</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="info-card" style="flex: 1; min-width: 280px; border: 2px dashed orange; padding: 15px; text-align: center;">
+        <img src="assets/quiz.jpg" alt="Cancer Quiz" style="width: 100%; height: 160px; object-fit: cover;" />
+        <h3 style="margin-top: 10px;">Cancer Quiz</h3>
+        <p>Check yourself how much you know about cancer.</p>
+        <a href="#" style="color: #004aad; font-weight: bold;">Read More...</a>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!--Footer-->
+
+<footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>CancerIndia</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Disclaimer</a></li>
+          <li><a href="#">AIM</a></li>
+          <li><a href="#">Sitemap</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Website Policies</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact-info">
+        <h3>CONTACT INFO</h3>
+        <p><strong>ICMR-National Institute of Cancer Prevention and Research</strong><br>
+          Ministry of Health and Family Welfare, Government of India</p>
+        <p><strong>Address:</strong><br>
+          I – 7, Sector – 39, NOIDA,<br>
+          Distt. Gautam Buddha Nagar, U.P – 201301, INDIA</p>
+        <p><strong>Phone:</strong> +91 – 120 – 2446938<br>
+          PABX: 2446900, Fax: +91 – 120 – 2579473</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © 2021 NICPR-ICMR</p>
+    </div>
+  </footer>
+  
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
