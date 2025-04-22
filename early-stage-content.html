@@ -102,7 +102,7 @@
 
     .patient-info {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
       margin-top: 40px;
     }
@@ -113,10 +113,9 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-    }
-
-    .patient-card-content {
-      flex-grow: 1;
+      justify-content: space-between;
+      height: 100%;
+      min-height: 400px;
     }
 
     .patient-card::before {
@@ -129,12 +128,47 @@
       background: linear-gradient(to right, var(--primary-color), var(--accent-color));
     }
 
+    .patient-header {
+      margin-bottom: 20px;
+    }
+
+    .patient-content {
+      flex-grow: 1;
+    }
+
+    .patient-footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-details {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-details:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
     .patient-status {
       display: inline-block;
       padding: 8px 15px;
       border-radius: 20px;
       font-size: 0.9em;
-      margin-top: 15px;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -162,137 +196,13 @@
       letter-spacing: 1px;
     }
 
-    .see-details-btn {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 15px;
-      transition: background-color 0.3s ease;
-      align-self: flex-start;
-    }
-
-    .see-details-btn:hover {
-      background-color: var(--secondary-color);
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      overflow-y: auto;
-    }
-
-    .modal-content {
-      background-color: var(--card-background);
-      margin: 50px auto;
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 800px;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .close-modal {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--text-secondary);
-      transition: color 0.3s ease;
-    }
-
-    .close-modal:hover {
-      color: var(--accent-color);
-    }
-
-    .modal-title {
-      color: var(--primary-color);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--primary-color);
-    }
-
-    .modal-section {
-      margin-bottom: 25px;
-    }
-
-    .modal-section h3 {
-      color: var(--secondary-color);
-      margin-bottom: 10px;
-    }
-
-    .modal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 15px;
-    }
-
-    .modal-info-item {
-      background-color: #f8f9fa;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 3px solid var(--primary-color);
-    }
-
-    .modal-info-item strong {
-      color: var(--primary-color);
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .treatment-timeline {
-      margin-top: 20px;
-      padding-left: 20px;
-      border-left: 3px solid var(--primary-color);
-    }
-
-    .timeline-item {
-      margin-bottom: 15px;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -8px;
-      top: 5px;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background-color: var(--primary-color);
-    }
-
-    .timeline-date {
-      color: var(--primary-color);
-      font-weight: bold;
-      margin-bottom: 5px;
+    @media (max-width: 1200px) {
+      .patient-info {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 10px;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
-
-      .pattern-card, .patient-card {
-        padding: 20px;
-      }
-
       .patient-info {
         grid-template-columns: 1fr;
       }
@@ -382,7 +292,7 @@
       
       <!-- OTHER STATIC LINKS -->
       <li class="nav-item"><a class="nav-title" href="/events.html">Events</a></li>
-      <li class="nav-item"><a class="nav-title" href="/disclaimer.html">Disclaimer</a></li>
+      <!-- <li class="nav-item"><a class="nav-title" href="/disclaimer.html">Disclaimer</a></li> -->
       <li class="nav-item"><a class="nav-title" href="/gallery.html">Gallery</a></li>
       <li class="nav-item"><a class="nav-title" href="/esr.html">ESR</a></li>
 
@@ -428,137 +338,107 @@
       <div class="patient-cards-container">
         <!-- Patient 1 -->
         <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient1.jpg" alt="Patient Rajesh Kumar">
-            <div class="stage-badge early-badge">Stage I</div>
+          <div class="patient-header">
+            <h2 class="patient-title">Patient Case 1: Sarah M.</h2>
+            <p class="patient-description">45-year-old non-smoker with incidental finding of small nodule.</p>
           </div>
-          <div class="patient-info">
-            <h3>Rajesh Kumar</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-mars"></i> Male</span>
-              <span><i class="fas fa-birthday-cake"></i> 42 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Delhi</span>
-            </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Non-small cell lung cancer detected during routine health check-up. Tumor size: 2cm.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Surgical resection performed. No chemotherapy needed.</p>
-              
-              <h4><i class="fas fa-prognosis"></i> Prognosis</h4>
-              <p>Excellent with 92% 5-year survival rate.</p>
-            </div>
+          <div class="patient-content">
+            <ul class="patient-details">
+              <li>Pattern: Small Nodule Pattern</li>
+              <li>Nodule Size: 1.2 cm</li>
+              <li>Location: Right upper lobe</li>
+              <li>Initial Symptoms: None (incidental finding)</li>
+              <li>Diagnosis: Stage IA adenocarcinoma</li>
+            </ul>
           </div>
-          <button class="see-details-btn" onclick="openModal('patient1')">See Patient Details</button>
+          <div class="patient-footer">
+            <span class="patient-status status-active">Active Treatment</span>
+            <a href="#" class="btn-details">See Details</a>
+          </div>
         </div>
 
         <!-- Patient 2 -->
         <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient2.jpg" alt="Patient Priya Sharma">
-            <div class="stage-badge early-badge">Stage 0</div>
+          <div class="patient-header">
+            <h2 class="patient-title">Patient Case 2: James R.</h2>
+            <p class="patient-description">52-year-old former smoker with ground-glass opacity.</p>
           </div>
-          <div class="patient-info">
-            <h3>Priya Sharma</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-venus"></i> Female</span>
-              <span><i class="fas fa-birthday-cake"></i> 38 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Mumbai</span>
-            </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Ductal carcinoma in situ (DCIS) found during mammogram screening.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Lumpectomy with radiation therapy.</p>
-              
-              <h4><i class="fas fa-prognosis"></i> Prognosis</h4>
-              <p>Nearly 100% survival with proper treatment.</p>
-            </div>
+          <div class="patient-content">
+            <ul class="patient-details">
+              <li>Pattern: Ground-Glass Opacity</li>
+              <li>Size: 2.5 cm</li>
+              <li>Location: Left lower lobe</li>
+              <li>Initial Symptoms: Mild cough</li>
+              <li>Diagnosis: Stage IA1 squamous cell carcinoma</li>
+            </ul>
           </div>
-          <button class="see-details-btn" onclick="openModal('patient2')">See Patient Details</button>
+          <div class="patient-footer">
+            <span class="patient-status status-monitoring">Under Monitoring</span>
+            <a href="#" class="btn-details">See Details</a>
+          </div>
         </div>
 
         <!-- Patient 3 -->
         <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient3.jpg" alt="Patient Amit Patel">
-            <div class="stage-badge early-badge">Stage I</div>
+          <div class="patient-header">
+            <h2 class="patient-title">Patient Case 3: Maria L.</h2>
+            <p class="patient-description">38-year-old with multiple small nodules.</p>
           </div>
-          <div class="patient-info">
-            <h3>Amit Patel</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-mars"></i> Male</span>
-              <span><i class="fas fa-birthday-cake"></i> 45 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
-            </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Prostate cancer detected through PSA test. Gleason score: 6.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Active surveillance initially, then robotic prostatectomy.</p>
-              
-              <h4><i class="fas fa-prognosis"></i> Prognosis</h4>
-              <p>Excellent with 95% 10-year survival.</p>
-            </div>
+          <div class="patient-content">
+            <ul class="patient-details">
+              <li>Pattern: Multiple Small Nodules</li>
+              <li>Nodule Count: 3</li>
+              <li>Size Range: 0.5-0.8 cm</li>
+              <li>Location: Bilateral</li>
+              <li>Diagnosis: Stage IB adenocarcinoma</li>
+            </ul>
           </div>
-          <button class="see-details-btn" onclick="openModal('patient3')">See Patient Details</button>
+          <div class="patient-footer">
+            <span class="patient-status status-active">Active Treatment</span>
+            <a href="#" class="btn-details">See Details</a>
+          </div>
         </div>
 
         <!-- Patient 4 -->
         <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient4.jpg" alt="Patient Sunita Reddy">
-            <div class="stage-badge early-badge">Stage I</div>
+          <div class="patient-header">
+            <h2 class="patient-title">Patient Case 4: Robert K.</h2>
+            <p class="patient-description">60-year-old with airway wall thickening.</p>
           </div>
-          <div class="patient-info">
-            <h3>Sunita Reddy</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-venus"></i> Female</span>
-              <span><i class="fas fa-birthday-cake"></i> 50 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
-            </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Colon cancer detected during colonoscopy. No lymph node involvement.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Surgical resection with clear margins.</p>
-              
-              <h4><i class="fas fa-prognosis"></i> Prognosis</h4>
-              <p>5-year survival rate of 90%.</p>
-            </div>
+          <div class="patient-content">
+            <ul class="patient-details">
+              <li>Pattern: Airway Wall Thickening</li>
+              <li>Location: Right main bronchus</li>
+              <li>Initial Symptoms: Wheezing</li>
+              <li>Diagnosis: Stage IA2 squamous cell carcinoma</li>
+              <li>Treatment: Surgery + Chemotherapy</li>
+            </ul>
           </div>
-          <button class="see-details-btn" onclick="openModal('patient4')">See Patient Details</button>
+          <div class="patient-footer">
+            <span class="patient-status status-monitoring">Post-Treatment</span>
+            <a href="#" class="btn-details">See Details</a>
+          </div>
         </div>
 
         <!-- Patient 5 -->
         <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient5.jpg" alt="Patient Vikram Singh">
-            <div class="stage-badge early-badge">Stage II</div>
+          <div class="patient-header">
+            <h2 class="patient-title">Patient Case 5: Emily T.</h2>
+            <p class="patient-description">49-year-old with mixed density pattern.</p>
           </div>
-          <div class="patient-info">
-            <h3>Vikram Singh</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-mars"></i> Male</span>
-              <span><i class="fas fa-birthday-cake"></i> 55 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Chandigarh</span>
-            </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Melanoma detected early during skin examination. Breslow thickness: 1mm.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Wide local excision with sentinel lymph node biopsy (negative).</p>
-              
-              <h4><i class="fas fa-prognosis"></i> Prognosis</h4>
-              <p>10-year survival rate of 85%.</p>
-            </div>
+          <div class="patient-content">
+            <ul class="patient-details">
+              <li>Pattern: Mixed Density Pattern</li>
+              <li>Size: 2.8 cm</li>
+              <li>Location: Left upper lobe</li>
+              <li>Initial Symptoms: Shortness of breath</li>
+              <li>Diagnosis: Stage IB adenocarcinoma</li>
+            </ul>
           </div>
-          <button class="see-details-btn" onclick="openModal('patient5')">See Patient Details</button>
+          <div class="patient-footer">
+            <span class="patient-status status-active">Active Treatment</span>
+            <a href="#" class="btn-details">See Details</a>
+          </div>
         </div>
       </div>
     </section>
@@ -586,8 +466,8 @@
     </section>
   </main>
 
-  <!--Footer-->
-  <footer class="site-footer">
+  <!-- Footer -->
+  <!-- <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-section">
         <h3>CancerIndia</h3>
@@ -612,329 +492,7 @@
           PABX: 2446900, Fax: +91 – 120 – 2579473</p>
       </div>
     </div>
-  </footer>
-
-  <!-- Modal for Patient 1 -->
-  <div id="patient1" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('patient1')">&times;</span>
-      <h2 class="modal-title">Patient Case 1: Sarah M. - Detailed Information</h2>
-      
-      <div class="modal-section">
-        <h3>Patient Overview</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Age</strong>
-            45 years
-          </div>
-          <div class="modal-info-item">
-            <strong>Gender</strong>
-            Female
-          </div>
-          <div class="modal-info-item">
-            <strong>Smoking History</strong>
-            Non-smoker
-          </div>
-          <div class="modal-info-item">
-            <strong>Current Status</strong>
-            Active Treatment
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Diagnostic Information</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Pattern Type</strong>
-            Small Nodule Pattern
-          </div>
-          <div class="modal-info-item">
-            <strong>Nodule Size</strong>
-            1.2 cm
-          </div>
-          <div class="modal-info-item">
-            <strong>Location</strong>
-            Right upper lobe
-          </div>
-          <div class="modal-info-item">
-            <strong>Stage</strong>
-            IA adenocarcinoma
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Treatment Timeline</h3>
-        <div class="treatment-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">January 15, 2024</div>
-            <div>Initial discovery during routine check-up</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">January 20, 2024</div>
-            <div>CT scan confirmation</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">January 25, 2024</div>
-            <div>Biopsy performed</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">February 1, 2024</div>
-            <div>Surgery scheduled</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal for Patient 2 -->
-  <div id="patient2" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('patient2')">&times;</span>
-      <h2 class="modal-title">Patient Case 2: Priya Sharma - Detailed Information</h2>
-      
-      <div class="modal-section">
-        <h3>Patient Overview</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Age</strong>
-            38 years
-          </div>
-          <div class="modal-info-item">
-            <strong>Gender</strong>
-            Female
-          </div>
-          <div class="modal-info-item">
-            <strong>Location</strong>
-            Mumbai
-          </div>
-          <div class="modal-info-item">
-            <strong>Current Status</strong>
-            Active Treatment
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Diagnostic Information</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Diagnosis</strong>
-            Ductal carcinoma in situ (DCIS)
-          </div>
-          <div class="modal-info-item">
-            <strong>Treatment</strong>
-            Lumpectomy with radiation therapy
-          </div>
-          <div class="modal-info-item">
-            <strong>Prognosis</strong>
-            Nearly 100% survival with proper treatment
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Treatment Timeline</h3>
-        <div class="treatment-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Initial discovery</div>
-            <div>During mammogram screening</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Treatment</div>
-            <div>Lumpectomy with radiation therapy</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal for Patient 3 -->
-  <div id="patient3" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('patient3')">&times;</span>
-      <h2 class="modal-title">Patient Case 3: Amit Patel - Detailed Information</h2>
-      
-      <div class="modal-section">
-        <h3>Patient Overview</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Age</strong>
-            45 years
-          </div>
-          <div class="modal-info-item">
-            <strong>Gender</strong>
-            Male
-          </div>
-          <div class="modal-info-item">
-            <strong>Location</strong>
-            Bangalore
-          </div>
-          <div class="modal-info-item">
-            <strong>Current Status</strong>
-            Active Treatment
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Diagnostic Information</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Diagnosis</strong>
-            Prostate cancer
-          </div>
-          <div class="modal-info-item">
-            <strong>Treatment</strong>
-            Active surveillance initially, then robotic prostatectomy
-          </div>
-          <div class="modal-info-item">
-            <strong>Prognosis</strong>
-            Excellent with 95% 10-year survival
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Treatment Timeline</h3>
-        <div class="treatment-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Initial discovery</div>
-            <div>Through PSA test</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Treatment</div>
-            <div>Active surveillance initially, then robotic prostatectomy</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal for Patient 4 -->
-  <div id="patient4" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('patient4')">&times;</span>
-      <h2 class="modal-title">Patient Case 4: Sunita Reddy - Detailed Information</h2>
-      
-      <div class="modal-section">
-        <h3>Patient Overview</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Age</strong>
-            50 years
-          </div>
-          <div class="modal-info-item">
-            <strong>Gender</strong>
-            Female
-          </div>
-          <div class="modal-info-item">
-            <strong>Location</strong>
-            Hyderabad
-          </div>
-          <div class="modal-info-item">
-            <strong>Current Status</strong>
-            Active Treatment
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Diagnostic Information</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Diagnosis</strong>
-            Colon cancer
-          </div>
-          <div class="modal-info-item">
-            <strong>Treatment</strong>
-            Surgical resection with clear margins
-          </div>
-          <div class="modal-info-item">
-            <strong>Prognosis</strong>
-            5-year survival rate of 90%
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Treatment Timeline</h3>
-        <div class="treatment-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Initial discovery</div>
-            <div>During colonoscopy</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Treatment</div>
-            <div>Surgical resection with clear margins</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal for Patient 5 -->
-  <div id="patient5" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal('patient5')">&times;</span>
-      <h2 class="modal-title">Patient Case 5: Vikram Singh - Detailed Information</h2>
-      
-      <div class="modal-section">
-        <h3>Patient Overview</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Age</strong>
-            55 years
-          </div>
-          <div class="modal-info-item">
-            <strong>Gender</strong>
-            Male
-          </div>
-          <div class="modal-info-item">
-            <strong>Location</strong>
-            Chandigarh
-          </div>
-          <div class="modal-info-item">
-            <strong>Current Status</strong>
-            Active Treatment
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Diagnostic Information</h3>
-        <div class="modal-grid">
-          <div class="modal-info-item">
-            <strong>Diagnosis</strong>
-            Melanoma
-          </div>
-          <div class="modal-info-item">
-            <strong>Treatment</strong>
-            Wide local excision with sentinel lymph node biopsy (negative)
-          </div>
-          <div class="modal-info-item">
-            <strong>Prognosis</strong>
-            10-year survival rate of 85%
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-section">
-        <h3>Treatment Timeline</h3>
-        <div class="treatment-timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Initial discovery</div>
-            <div>During skin examination</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Treatment</div>
-            <div>Wide local excision with sentinel lymph node biopsy (negative)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </footer> -->
 
   <script src="script.js"></script>
 </body>
