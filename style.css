@@ -1641,3 +1641,269 @@ html {
     font-size: 1rem;
   }
 }
+
+
+
+
+/* ++++++++++++++++++ESR PAGE CSS */
+/* ESR Page Styles */
+.esr-main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.esr-hero {
+  background-image: url('assets/cancer.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.esr-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.esr-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.esr-title {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.esr-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  color: #eec613;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.stage-selection {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #007bba;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #eec613;
+}
+
+.stage-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.stage-card {
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  border-top: 5px solid;
+}
+
+.stage-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.stage-card h3 {
+  font-size: 1.8rem;
+  margin: 20px 0 15px;
+  color: #333;
+}
+
+.stage-card p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.stage-icon {
+  font-size: 3rem;
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.early-stage {
+  border-top-color: #4CAF50;
+}
+
+.early-stage .stage-icon {
+  background-color: #4CAF50;
+}
+
+.during-stage {
+  border-top-color: #2196F3;
+}
+
+.during-stage .stage-icon {
+  background-color: #2196F3;
+}
+
+.after-stage {
+  border-top-color: #9C27B0;
+}
+
+.after-stage .stage-icon {
+  background-color: #9C27B0;
+}
+
+.stage-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #007bba;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.stage-btn:hover {
+  background-color: #005f91;
+  text-decoration: none;
+}
+
+.stage-content {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.stage-content h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #007bba;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.stage-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #eec613;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.content-item {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.content-item:hover {
+  transform: translateY(-5px);
+}
+
+.content-item h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.content-item h3 i {
+  margin-right: 10px;
+  color: #007bba;
+}
+
+.content-item ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.content-item li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+  color: #555;
+}
+
+.content-item li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .esr-title {
+    font-size: 2.2rem;
+  }
+  
+  .esr-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .stage-card {
+    min-width: 100%;
+  }
+  
+  .stage-content {
+    padding: 25px;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}

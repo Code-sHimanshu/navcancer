@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post-Treatment Survivors | ICPC</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- 🔵 HEADER SECTION -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="/index.html"><img src="assets/logo.jpg" alt="India Against Cancer" class="logo"/></a>
+    </div>
+    <div class="header-right">
+      <h1>International Cancer Patient Coalition</h1>
+    </div>    
+  </header>
+
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="/index.html" class="nav-title">Home</a>
+      </li>
+
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="/about.html" class="dropdown-item">History</a></li>
+              <li><a href="/profile.html" class="dropdown-item">Profile</a></li>
+              <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('cancer-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+    <!-- SERVICES OFFERED -->
+    <li class="nav-item has-dropdown">
+      <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+        <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+        <div class="dropdown" id="faicilities-dropdown">
+          <ul class="dropdown-list" id="faicilities-options">
+            <li>AI based Prediction</li

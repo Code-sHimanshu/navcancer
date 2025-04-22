@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lung Cancer Prediction System</title>
+  <title>Early Stage Recognition | Lung Cancer Prediction System</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -69,35 +69,33 @@
               <li><a class="dropdown-item" href="https://www.cancerinstitutewia.in" target="_blank">Cancer Institute (WIA)</a></li>
               <li><a class="dropdown-item" href="https://www.apollohospitals.com" target="_blank">Apollo Cancer Centre</a></li>
               <li><a class="dropdown-item" href="https://www.rgcirc.org/" target="_blank">RGCI Delhi</a></li>
-
             </ul>
             <button class="add-btn" onclick="addOption('fit-options')">+ Add more</button>
           </div>
         </div>
       </li>
 
-         <!-- Adiminstration -->
-         <li class="nav-item has-dropdown">
-          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'admin-dropdown', this)">
-            <span class="nav-title">Administration<span class="arrow">▼</span></span>
-            <div class="dropdown" id="admin-dropdown">
-              <ul class="dropdown-list" id="admin-options">
-                <li><a class="dropdown-item" href="/board.html">Meet the Board</a></li>
-              </ul>
-              <button class="add-btn" onclick="addOption('admin-options')">+ Add more</button>
-            </div>
+      <!-- Adiminstration -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'admin-dropdown', this)">
+          <span class="nav-title">Administration<span class="arrow">▼</span></span>
+          <div class="dropdown" id="admin-dropdown">
+            <ul class="dropdown-list" id="admin-options">
+              <li><a class="dropdown-item" href="/board.html">Meet the Board</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('admin-options')">+ Add more</button>
           </div>
-        </li>
+        </div>
+      </li>
+      
       <!-- OTHER STATIC LINKS -->
-   
       <li class="nav-item"><a class="nav-title" href="/events.html">Events</a></li>
       <!-- <li class="nav-item"><a class="nav-title" href="/disclaimer.html">Disclaimer</a></li> -->
       <li class="nav-item"><a class="nav-title" href="/gallery.html">Gallery</a></li>
       <li class="nav-item"><a class="nav-title" href="/esr.html">ESR</a></li>
 
-      
       <!-- main website -->
-       <li class="nav-item has-dropdown">
+      <li class="nav-item has-dropdown">
         <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
           <span class="nav-title">Main Website<span class="arrow">▼</span></span>
           <div class="dropdown" id="main-dropdown">
@@ -118,96 +116,55 @@
     </ul>
   </nav>
 
-<!-- ✨ SLOGANS HERO -->
-<div class="slogan-hero">
-  <h2 class="hero-title">“Early Detection Saves Lives.”</h2>
-  <p class="hero-subtitle">Let’s spread awareness, break the silence, and fight cancer with knowledge & kindness.</p>
-</div>
-
-<!-- ✨ SLOGANS SECTION -->
-<div class="slogan-bg">
-  <div class="slogan-container">
-    <div class="slogan">🎗 Fight cancer with hope and heart</div>
-    <div class="slogan">🎗 Awareness today, a cure tomorrow</div>
-    <div class="slogan">🎗 Early Detection Is A Better Choice</div>
-    <div class="slogan">🎗 Awareness Is Power</div>
-  </div>
-</div>
-
-
-  <!-- 🔶 MIDDLE SECTION -->
-   <div class="section-wrapper">
-  <section class="middle-section">
-    <div class="info-section" style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
-  
-      <!-- YouTube Video -->
-      <div class="info-video" style="flex: 1;">
-        <iframe width="100%" height="250" src="https://www.youtube.com/embed/1Gc8lR1J6kc" frameborder="0" allowfullscreen></iframe>
+  <!-- ✨ MAIN CONTENT SECTION -->
+  <main class="esr-main">
+    <!-- Hero Section -->
+    <section class="esr-hero">
+      <div class="esr-hero-content">
+        <h1 class="esr-title">Early Stage Recognition</h1>
+        <p class="esr-subtitle">Understanding cancer at different stages can lead to better outcomes</p>
       </div>
-  
-      <!-- Text -->
-      <div class="info-text" style="flex: 1; padding: 0 15px;">
-        <h2>India Battles Cancer</h2>
-        <p>“India Battles Cancer” is a portal that provides information on the leading cancers in India with a major focus on awareness, prevention and treatment of these cancers.</p>
-        <a href="#" class="read-more">Read More...</a>
-      </div>
-  
-      <!-- Mini Carousel -->
-      <div class="mini-carousel" style="flex: 1;">
-        <div class="carousel-card active">
-          <img src="assets/breast_survivor.jpg" alt="Breast Cancer Survivor" />
+    </section>
+
+    <!-- Stage Selection Section -->
+    <section class="stage-selection">
+      <h2 class="section-title">Select Stage</h2>
+      <div class="stage-cards-container">
+        <!-- Early Stage Card -->
+        <div class="stage-card early-stage">
+          <div class="stage-icon">
+            <i class="fas fa-search-plus"></i>
+          </div>
+          <h3>Early Stage</h3>
+          <p>Learn about early detection methods, symptoms to watch for, and preventive measures.</p>
+          <a href="early-stage-content.html" class="stage-btn">See Patients</a>
         </div>
-        <div class="carousel-card">
-          <img src="assets/pink_ribbon.jpg" alt="Awareness Ribbon" />
+
+        <!-- During Stage Card -->
+        <div class="stage-card during-stage">
+          <div class="stage-icon">
+            <i class="fas fa-procedures"></i>
+          </div>
+          <h3>During Treatment</h3>
+          <p>Understand treatment options, managing side effects, and maintaining quality of life.</p>
+          <a href="during-stage-content.html" class="stage-btn">See Patients</a>
         </div>
-        <div class="carousel-card">
-          <img src="assets/healthy_lifestyle.jpg" alt="Healthy Lifestyle" />
-        </div>
-        <div class="carousel-controls">
-          <button onclick="switchMiniSlide(-1)">❮</button>
-          <button onclick="switchMiniSlide(1)">❯</button>
+
+        <!-- After Treatment Card -->
+        <div class="stage-card after-stage">
+          <div class="stage-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3>After Treatment</h3>
+          <p>Guidance on recovery, follow-up care, and returning to normal life after treatment.</p>
+          <a href="after-treatment-stage-content.html" class="stage-btn">See Patients</a>
         </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </main>
 
-<!-- 🔷 INFORMATION CARDS SECTION -->
- <div class="section-wrapper">
-<section class="info-cards-section" style="padding: 40px 20px;">
-    <div class="cards-container" style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
-
-      <!-- Card 1 -->
-      <div class="info-card" style="flex: 1; min-width: 280px; border: 2px dashed orange; padding: 15px; text-align: center;">
-        <img src="assets/healthcare.jpg" alt="Cancer Treatment" style="width: 100%; height: 160px; object-fit: cover;" />
-        <h3 style="margin-top: 10px;">Cancer Treatment</h3>
-        <p>Government centers in India providing cancer treatment</p>
-        <a href="#" style="color: #004aad; font-weight: bold;">Read More...</a>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="info-card" style="flex: 1; min-width: 280px; border: 2px dashed orange; padding: 15px; text-align: center;">
-        <img src="assets/financial_aid.jpg" alt="Financial Aid" style="width: 100%; height: 160px; object-fit: cover;" />
-        <h3 style="margin-top: 10px;">Financial Aid</h3>
-        <p>State Government and Central Government funding for cancer</p>
-        <a href="#" style="color: #004aad; font-weight: bold;">Read More...</a>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="info-card" style="flex: 1; min-width: 280px; border: 2px dashed orange; padding: 15px; text-align: center;">
-        <img src="assets/quiz.jpg" alt="Cancer Quiz" style="width: 100%; height: 160px; object-fit: cover;" />
-        <h3 style="margin-top: 10px;">Cancer Quiz</h3>
-        <p>Check yourself how much you know about cancer.</p>
-        <a href="#" style="color: #004aad; font-weight: bold;">Read More...</a>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!--Footer-->
-
-<footer class="site-footer">
+  <!--Footer-->
+  <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-section">
         <h3>CancerIndia</h3>
@@ -233,10 +190,41 @@
       </div>
     </div>
   </footer>
-  
-
-
 
   <script src="script.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Show/hide content sections based on which card is clicked
+    document.querySelectorAll('.stage-card').forEach(card => {
+      card.addEventListener('click', function() {
+        // Hide all content sections
+        document.querySelectorAll('.stage-content').forEach(section => {
+          section.style.display = 'none';
+        });
+        
+        // Show the corresponding content section
+        const targetId = this.querySelector('a').getAttribute('href');
+        document.querySelector(targetId).style.display = 'block';
+      });
+    });
+
+    // Initially hide all content sections except the first one
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.stage-content').forEach((section, index) => {
+        if(index !== 0) {
+          section.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
