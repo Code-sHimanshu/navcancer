@@ -3,9 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Post-Treatment Survivors | ICPC</title>
+  <title>Post-Treatment Recognition | Lung Cancer Prediction System</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Hero Section */
+    .patient-hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/survivor-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .patient-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .patient-hero .patient-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .patient-hero .patient-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #eee;
+    }
+
+    /* Survivor Cards */
+    .patient-cards-section {
+      margin: 2rem 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .section-intro {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .patient-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .patient-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .patient-card:hover {
+      transform: translateY(-5px);
+    }
+    .patient-header {
+      margin-bottom: 1rem;
+    }
+    .patient-header .patient-title {
+      color: #1a5276;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .patient-header .patient-title i {
+      color: #3498db;
+    }
+    .patient-description {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .patient-details {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .patient-details li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .patient-details li:before {
+      content: "•";
+      color: #3498db;
+      position: absolute;
+      left: 0;
+    }
+    .patient-footer {
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-details {
+      background-color: #3498db;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-details:hover {
+      background-color: #2980b9;
+    }
+    .patient-status {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+      border-radius: 15px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background-color: #e8f5e9;
+      color: #27ae60;
+      border: 1px solid #27ae60;
+    }
+
+    /* Key Takeaways */
+    .key-takeaways {
+      background-color: #f8f9fa;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .key-takeaways h2 {
+      color: #1a5276;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .takeaways-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .takeaway-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .takeaway-card i {
+      font-size: 2rem;
+      color: #3498db;
+      margin-bottom: 1rem;
+    }
+    .takeaway-card h3 {
+      color: #1a5276;
+      margin-bottom: 0.5rem;
+    }
+    .takeaway-card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .patient-cards-container { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .patient-cards-container { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -42,10 +223,214 @@
         </div>
       </li>
 
-    <!-- SERVICES OFFERED -->
-    <li class="nav-item has-dropdown">
-      <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
-        <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
-        <div class="dropdown" id="faicilities-dropdown">
-          <ul class="dropdown-list" id="faicilities-options">
-            <li>AI based Prediction</li
+      <!-- SERVICES OFFERED -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+          <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+          <div class="dropdown" id="faicilities-dropdown">
+            <ul class="dropdown-list" id="faicilities-options">
+              <li>AI based Prediction</li>
+              <li>Connect with experts</li>
+              <li>Research & Development</li>
+              <li>Government Schemes</li>
+            </ul>
+            <button class="add-btn" onclick="addOption('faicilities-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+      <!-- STAY-FIT -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'fit-dropdown', this)">
+          <span class="nav-title">Hospitals <span class="arrow">▼</span></span>
+          <div class="dropdown" id="fit-dropdown">
+            <ul class="dropdown-list" id="fit-options">
+              <li><a class="dropdown-item" href="https://tmc.gov.in" target="_blank">Tata Memorial Hospital</a></li>
+              <li><a class="dropdown-item" href="https://www.aiims.edu/en.html" target="_blank">AIIMS Delhi</a></li>
+              <li><a class="dropdown-item" href="https://www.cancerinstitutewia.in" target="_blank">Cancer Institute (WIA)</a></li>
+              <li><a class="dropdown-item" href="https://www.apollohospitals.com" target="_blank">Apollo Cancer Centre</a></li>
+              <li><a class="dropdown-item" href="https://www.rgcirc.org/" target="_blank">RGCI Delhi</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('fit-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+      <!-- ADMINISTRATION -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'admin-dropdown', this)">
+          <span class="nav-title">Administration<span class="arrow">▼</span></span>
+          <div class="dropdown" id="admin-dropdown">
+            <ul class="dropdown-list" id="admin-options">
+              <li><a class="dropdown-item" href="/board.html">Meet the Board</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('admin-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+
+      <!-- OTHER LINKS -->
+      <li class="nav-item"><a class="nav-title" href="/events.html">Events</a></li>
+      <li class="nav-item"><a class="nav-title" href="/gallery.html">Gallery</a></li>
+      <li class="nav-item"><a class="nav-title" href="/esr.html">ESR</a></li>
+
+      <!-- MAIN WEBSITE -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">Main Website<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
+              <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
+              <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
+              <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
+              <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
+              <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
+              <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
+              <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
+            </ul>
+            <button class="add-btn" onclick="addOption('main-options')">+ Add more</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="patient-main">
+    <!-- Hero Section -->
+    <section class="patient-hero after-hero">
+      <div class="patient-hero-content">
+        <h1 class="patient-title"><i class="fas fa-heartbeat"></i> Post-Treatment Survivors</h1>
+        <p class="patient-subtitle">Stories of hope and resilience after successful treatment</p>
+      </div>
+    </section>
+
+    <!-- Survivor Case Studies Section -->
+    <section class="patient-cards-section">
+      <div class="container">
+        <div class="section-intro">
+          <h2><i class="fas fa-user-check"></i> Survivor Case Studies</h2>
+          <p>Real survivorship stories (names changed) of patients who have completed treatment successfully.</p>
+        </div>      
+        <div class="patient-cards-container">
+          <!-- Survivor 1 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title"><i class="fas fa-user"></i> Survivor 1: Alex D.</h2>
+              <p class="patient-description">50-year-old, completed Stage IB treatment</p>
+            </div>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Stage IB NSCLC</li>
+                <li>Treatment Completed: Lobectomy + adjuvant chemo</li>
+                <li>Current Status: Cancer-free at 2-year follow-up</li>
+                <li>Follow-up Plan: Quarterly scans</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <a href="#" class="btn-details">
+                Show Details
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Survivor 2 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title"><i class="fas fa-user"></i> Survivor 2: Beth L.</h2>
+              <p class="patient-description">47-year-old, completed Stage II treatment</p>
+            </div>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Stage II NSCLC</li>
+                <li>Treatment Completed: Radiation + chemo</li>
+                <li>Current Status: Cancer-free at 1.5-year follow-up</li>
+                <li>Follow-up Plan: Biannual scans</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <a href="#" class="btn-details">Show Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <!-- Survivor 3 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title"><i class="fas fa-user"></i> Survivor 3: Carlos R.</h2>
+              <p class="patient-description">55-year-old, completed Stage IA treatment</p>
+            </div>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Stage IA NSCLC</li>
+                <li>Treatment Completed: Wedge resection</li>
+                <li>Current Status: Cancer-free at 3-year follow-up</li>
+                <li>Follow-up Plan: Annual scans</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <a href="#" class="btn-details">Show Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <!-- Survivor 4 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title"><i class="fas fa-user"></i> Survivor 4: Diana M.</h2>
+              <p class="patient-description">62-year-old, completed Stage III treatment</p>
+            </div>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Stage III NSCLC</li>
+                <li>Treatment Completed: Chemoradiation</li>
+                <li>Current Status: No evidence of disease at 6-month scan</li>
+                <li>Follow-up Plan: Quarterly scans</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <a href="#" class="btn-details">Show Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <!-- Survivor 5 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title"><i class="fas fa-user"></i> Survivor 5: Ethan S.</h2>
+              <p class="patient-description">45-year-old, completed Stage IB treatment</p>
+            </div>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Stage IB NSCLC</li>
+                <li>Treatment Completed: Lobectomy</li>
+                <li>Current Status: Cancer-free at 18-month follow-up</li>
+                <li>Follow-up Plan: Semi-annual scans</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <a href="#" class="btn-details">Show Details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Takeaways Section -->
+    <section class="key-takeaways">
+      <h2><i class="fas fa-lightbulb"></i> Key Takeaways</h2>
+      <div class="takeaways-container">
+        <div class="takeaway-card">
+          <i class="fas fa-heartbeat"></i>
+          <h3>Survivorship</h3>
+          <p>Survivors are living proof of the effectiveness of treatment.</p>
+        </div>
+        <div class="takeaway-card">
+          <i class="fas fa-calendar-check"></i>
+          <h3>Follow-up</h3>
+          <p>Regular follow-up is crucial for early detection and management.</p>
+        </div>
+        <div class="takeaway-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h3>Support</h3>
+          <p>Survivors need emotional and social support throughout their journey.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -6,6 +6,259 @@
   <title>During Treatment Patients | ICPC</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Added styles for the patient cards section */
+    .patient-cards-section {
+      margin: 2rem 0;
+    }
+    
+    .section-intro {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .patient-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .patient-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .patient-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .patient-header {
+      margin-bottom: 1rem;
+    }
+    
+    .patient-content {
+      flex-grow: 1;
+    }
+    
+    .patient-title {
+      color: #1a5276;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .patient-title i {
+      color: #3498db;
+    }
+    
+    .patient-description {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .patient-details {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    
+    .patient-details li {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    
+    .patient-footer {
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .btn-details {
+      background-color: #3498db;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-details:hover {
+      background-color: #2980b9;
+    }
+    
+    .patient-status {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .status-active {
+      background-color: #e8f5e9;
+      color: #27ae60;
+    }
+    
+    .status-monitoring {
+      background-color: #fff3e0;
+      color: #f39c12;
+    }
+    
+    .status-treatment {
+      background-color: #e3f2fd;
+      color: #1976d2;
+    }
+    
+    /* Key Takeaways section */
+    .key-takeaways {
+      background-color: #f8f9fa;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    
+    .key-takeaways h2 {
+      color: #1a5276;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .takeaways-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .takeaway-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .takeaway-card i {
+      font-size: 2rem;
+      color: #3498db;
+      margin-bottom: 1rem;
+    }
+    
+    .takeaway-card h3 {
+      color: #1a5276;
+      margin-bottom: 0.5rem;
+    }
+    
+    .takeaway-card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    /* Patient image and info styles */
+    .patient-image {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    
+    .patient-image img {
+      width: 100%;
+      border-radius: 8px;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .stage-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: white;
+    }
+    
+    .during-badge {
+      background-color: #1976d2;
+    }
+    
+    .patient-info h3 {
+      color: #1a5276;
+      margin-bottom: 0.5rem;
+    }
+    
+    .patient-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    
+    .patient-meta i {
+      margin-right: 0.3rem;
+      color: #3498db;
+    }
+    
+    .patient-details h4 {
+      color: #1a5276;
+      font-size: 1rem;
+      margin: 1rem 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .patient-details p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Hero section */
+    .patient-hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/treatment-hero.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    .patient-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .patient-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .patient-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #eee;
+    }
+  </style>
 </head>
 <body>
 
@@ -90,7 +343,7 @@
       
       <!-- OTHER STATIC LINKS -->
       <li class="nav-item"><a class="nav-title" href="/events.html">Events</a></li>
-      <li class="nav-item"><a class="nav-title" href="/disclaimer.html">Disclaimer</a></li>
+      <!-- <li class="nav-item"><a class="nav-title" href="/disclaimer.html">Disclaimer</a></li> -->
       <li class="nav-item"><a class="nav-title" href="/gallery.html">Gallery</a></li>
       <li class="nav-item"><a class="nav-title" href="/esr.html">ESR</a></li>
 
@@ -128,138 +381,155 @@
 
     <!-- Patient Cards Section -->
     <section class="patient-cards-section">
-      <div class="section-intro">
-        <h2>Patient Profiles</h2>
-        <p>These patients are currently undergoing various cancer treatments.</p>
-      </div>
-
-      <div class="patient-cards-container">
-        <!-- Patient 1 -->
-        <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient6.jpg" alt="Patient Anil Verma">
-            <div class="stage-badge during-badge">Stage III</div>
-          </div>
-          <div class="patient-info">
-            <h3>Anil Verma</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-mars"></i> Male</span>
-              <span><i class="fas fa-birthday-cake"></i> 48 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Kolkata</span>
-            </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Stage III colorectal cancer with regional lymph node involvement.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Neoadjuvant chemoradiation followed by surgery. Currently on adjuvant chemo.</p>
-              
-              <h4><i class="fas fa-notes-medical"></i> Current Status</h4>
-              <p>Tolerating treatment well with manageable side effects.</p>
-            </div>
-          </div>
+      <div class="container">
+        <div class="section-intro">
+          <h2>Patient Case Studies</h2>
+          <p>These are real case studies (names changed) of patients who are currently undergoing cancer treatment.</p>
         </div>
 
-        <!-- Patient 2 -->
-        <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient7.jpg" alt="Patient Meena Desai">
-            <div class="stage-badge during-badge">Stage II</div>
-          </div>
-          <div class="patient-info">
-            <h3>Meena Desai</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-venus"></i> Female</span>
-              <span><i class="fas fa-birthday-cake"></i> 52 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Pune</span>
+        <div class="patient-cards-container">
+          <!-- Patient 1 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title">
+                <i class="fas fa-user"></i>
+                Patient Case 1: Anil Verma
+              </h2>
+              <p class="patient-description">48-year-old male from Kolkata</p>
             </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>HER2-positive breast cancer, 3cm tumor, no lymph node spread.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Neoadjuvant chemotherapy with trastuzumab, planned for surgery.</p>
-              
-              <h4><i class="fas fa-notes-medical"></i> Current Status</h4>
-              <p>Good response to chemo, tumor shrinking significantly.</p>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Stage III colorectal cancer</li>
+                <li>Treatment: Neoadjuvant chemoradiation followed by surgery</li>
+                <li>Current Status: Tolerating adjuvant chemo well</li>
+                <li>Side Effects: Mild nausea, manageable fatigue</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <span class="patient-status status-treatment">
+                <i class="fas fa-syringe"></i>
+                Active Treatment
+              </span>
+              <a href="#" class="btn-details">
+                View Details
+                <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
           </div>
-        </div>
 
-        <!-- Patient 3 -->
-        <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient8.jpg" alt="Patient Ravi Khanna">
-            <div class="stage-badge during-badge">Stage IV</div>
-          </div>
-          <div class="patient-info">
-            <h3>Ravi Khanna</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-mars"></i> Male</span>
-              <span><i class="fas fa-birthday-cake"></i> 60 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Chennai</span>
+          <!-- Patient 2 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title">
+                <i class="fas fa-user"></i>
+                Patient Case 2: Meena Desai
+              </h2>
+              <p class="patient-description">52-year-old female from Pune</p>
             </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Metastatic prostate cancer with bone metastases.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Hormone therapy with novel anti-androgens. Bone-strengthening agents.</p>
-              
-              <h4><i class="fas fa-notes-medical"></i> Current Status</h4>
-              <p>PSA levels decreasing, pain well-controlled.</p>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: HER2-positive breast cancer</li>
+                <li>Treatment: Neoadjuvant chemotherapy with trastuzumab</li>
+                <li>Current Status: Tumor shrinking significantly</li>
+                <li>Side Effects: Hair loss, mild neuropathy</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <span class="patient-status status-treatment">
+                <i class="fas fa-syringe"></i>
+                Active Treatment
+              </span>
+              <a href="#" class="btn-details">
+                View Details
+                <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
           </div>
-        </div>
 
-        <!-- Patient 4 -->
-        <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient9.jpg" alt="Patient Kavita Joshi">
-            <div class="stage-badge during-badge">Stage III</div>
-          </div>
-          <div class="patient-info">
-            <h3>Kavita Joshi</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-venus"></i> Female</span>
-              <span><i class="fas fa-birthday-cake"></i> 45 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Ahmedabad</span>
+          <!-- Patient 3 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title">
+                <i class="fas fa-user"></i>
+                Patient Case 3: Ravi Khanna
+              </h2>
+              <p class="patient-description">60-year-old male from Chennai</p>
             </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Ovarian cancer with peritoneal involvement.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>Debulking surgery followed by IV/IP chemotherapy.</p>
-              
-              <h4><i class="fas fa-notes-medical"></i> Current Status</h4>
-              <p>Completing third cycle, managing nausea with medications.</p>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Metastatic prostate cancer</li>
+                <li>Treatment: Hormone therapy with novel anti-androgens</li>
+                <li>Current Status: PSA levels decreasing</li>
+                <li>Side Effects: Hot flashes, fatigue</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <span class="patient-status status-treatment">
+                <i class="fas fa-syringe"></i>
+                Active Treatment
+              </span>
+              <a href="#" class="btn-details">
+                View Details
+                <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
           </div>
-        </div>
 
-        <!-- Patient 5 -->
-        <div class="patient-card">
-          <div class="patient-image">
-            <img src="assets/patient10.jpg" alt="Patient Sanjay Gupta">
-            <div class="stage-badge during-badge">Stage II</div>
-          </div>
-          <div class="patient-info">
-            <h3>Sanjay Gupta</h3>
-            <div class="patient-meta">
-              <span><i class="fas fa-mars"></i> Male</span>
-              <span><i class="fas fa-birthday-cake"></i> 35 years</span>
-              <span><i class="fas fa-map-marker-alt"></i> Jaipur</span>
+          <!-- Patient 4 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title">
+                <i class="fas fa-user"></i>
+                Patient Case 4: Kavita Joshi
+              </h2>
+              <p class="patient-description">45-year-old female from Ahmedabad</p>
             </div>
-            <div class="patient-details">
-              <h4><i class="fas fa-diagnoses"></i> Diagnosis</h4>
-              <p>Hodgkin's lymphoma, bulky mediastinal disease.</p>
-              
-              <h4><i class="fas fa-procedures"></i> Treatment</h4>
-              <p>ABVD chemotherapy regimen, planned for 6 cycles.</p>
-              
-              <h4><i class="fas fa-notes-medical"></i> Current Status</h4>
-              <p>After 2 cycles, PET scan shows excellent response.</p>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Ovarian cancer with peritoneal involvement</li>
+                <li>Treatment: Debulking surgery followed by IV/IP chemo</li>
+                <li>Current Status: Completing third cycle</li>
+                <li>Side Effects: Nausea, abdominal discomfort</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <span class="patient-status status-treatment">
+                <i class="fas fa-syringe"></i>
+                Active Treatment
+              </span>
+              <a href="#" class="btn-details">
+                View Details
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Patient 5 -->
+          <div class="patient-card">
+            <div class="patient-header">
+              <h2 class="patient-title">
+                <i class="fas fa-user"></i>
+                Patient Case 5: Sanjay Gupta
+              </h2>
+              <p class="patient-description">35-year-old male from Jaipur</p>
+            </div>
+            <div class="patient-content">
+              <ul class="patient-details">
+                <li>Diagnosis: Hodgkin's lymphoma, bulky mediastinal disease</li>
+                <li>Treatment: ABVD chemotherapy regimen</li>
+                <li>Current Status: Excellent response after 2 cycles</li>
+                <li>Side Effects: Mild hair thinning, fatigue</li>
+              </ul>
+            </div>
+            <div class="patient-footer">
+              <span class="patient-status status-treatment">
+                <i class="fas fa-syringe"></i>
+                Active Treatment
+              </span>
+              <a href="#" class="btn-details">
+                View Details
+                <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -268,54 +538,43 @@
 
     <!-- Treatment Tips Section -->
     <section class="key-takeaways">
-      <h2><i class="fas fa-hand-holding-medical"></i> Treatment Management Tips</h2>
-      <div class="takeaways-container">
-        <div class="takeaway-card">
-          <i class="fas fa-pills"></i>
-          <h3>Side Effect Management</h3>
-          <p>Work closely with your care team to manage treatment side effects effectively.</p>
-        </div>
-        <div class="takeaway-card">
-          <i class="fas fa-utensils"></i>
-          <h3>Nutrition During Treatment</h3>
-          <p>Maintain proper nutrition to help your body tolerate treatment better.</p>
-        </div>
-        <div class="takeaway-card">
-          <i class="fas fa-heart"></i>
-          <h3>Emotional Support</h3>
-          <p>Seek counseling or join support groups to help cope with the emotional challenges.</p>
+      <div class="container">
+        <h2><i class="fas fa-hand-holding-medical"></i> Key Takeaways During Treatment</h2>
+        <div class="takeaways-container">
+          <div class="takeaway-card">
+            <i class="fas fa-pills"></i>
+            <h3>Side Effect Management</h3>
+            <p>Work closely with your care team to manage treatment side effects effectively. Don't hesitate to report any new symptoms.</p>
+          </div>
+          <div class="takeaway-card">
+            <i class="fas fa-utensils"></i>
+            <h3>Nutrition During Treatment</h3>
+            <p>Maintain proper nutrition to help your body tolerate treatment better. Consider consulting a dietitian specialized in oncology.</p>
+          </div>
+          <div class="takeaway-card">
+            <i class="fas fa-heart"></i>
+            <h3>Emotional Support</h3>
+            <p>Seek counseling or join support groups to help cope with the emotional challenges of cancer treatment.</p>
+          </div>
+          <div class="takeaway-card">
+            <i class="fas fa-calendar-check"></i>
+            <h3>Treatment Adherence</h3>
+            <p>Stick to your treatment schedule and keep all appointments. Consistency improves outcomes.</p>
+          </div>
+          <div class="takeaway-card">
+            <i class="fas fa-users"></i>
+            <h3>Caregiver Support</h3>
+            <p>Involve family or friends in your care. Having support makes the treatment journey easier.</p>
+          </div>
+          <div class="takeaway-card">
+            <i class="fas fa-file-medical"></i>
+            <h3>Track Progress</h3>
+            <p>Keep a journal of symptoms, side effects, and questions for your medical team.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
-
-  <!--Footer-->
-  <!-- <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>CancerIndia</h3>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Disclaimer</a></li>
-          <li><a href="#">AIM</a></li>
-          <li><a href="#">Sitemap</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Website Policies</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-section contact-info">
-        <h3>CONTACT INFO</h3>
-        <p><strong>ICMR-National Institute of Cancer Prevention and Research</strong><br>
-          Ministry of Health and Family Welfare, Government of India</p>
-        <p><strong>Address:</strong><br>
-          I – 7, Sector – 39, NOIDA,<br>
-          Distt. Gautam Buddha Nagar, U.P – 201301, INDIA</p>
-        <p><strong>Phone:</strong> +91 – 120 – 2446938<br>
-          PABX: 2446900, Fax: +91 – 120 – 2579473</p>
-      </div>
-    </div>
-  </footer> -->
 
   <script src="script.js"></script>
 </body>
