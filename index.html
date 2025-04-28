@@ -9,9 +9,154 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <style>
+      /* Chatbot and Assistant Styles */
+      .chatbot-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+      
+      .chatbot-btn {
+        background-color: #2c3e50;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+      }
+      
+      .chatbot-btn:hover {
+        background-color: #3498db;
+        transform: scale(1.1);
+      }
+      
+      .assistant-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+      
+      .assistant-btn {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+      }
+      
+      .assistant-btn:hover {
+        background-color: #c0392b;
+        transform: scale(1.1);
+      }
+      
+      /* Chat window (hidden by default) */
+      .chat-window {
+        display: none;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 350px;
+        height: 500px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        flex-direction: column;
+        z-index: 1001;
+      }
+      
+      .chat-header {
+        background: #2c3e50;
+        color: white;
+        padding: 15px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .chat-body {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+      }
+      
+      .chat-footer {
+        padding: 15px;
+        border-top: 1px solid #eee;
+      }
+      
+      .chat-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      
+      .close-chat {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .sent-chat {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+      .sent-chat:hover {
+        background-color: #2980b9;
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Chatbot Button Top Right -->
+    <div class="chatbot-container">
+      <button class="chatbot-btn" onclick="toggleChat()">
+        <i class="fas fa-robot"></i>
+      </button>
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+          <h3>Cancer Support Chatbot</h3>
+          <button class="close-chat" onclick="toggleChat()">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+          <!-- Chat messages will appear here -->
+          <div class="chat-message bot-message">
+            Hello! I'm here to help with cancer-related information. How can I assist you today?
+          </div>
+        </div>
+        <div class="chat-footer">
+          <input type="text" class="chat-input" placeholder="Type your message..." id="userInput">
+          <button class="sent-chat" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Human Assistant Button Bottom Right -->
+    <div class="assistant-container">
+      <button class="assistant-btn" onclick="connectToAssistant()">
+        <i class="fas fa-user-md"></i>
+      </button>
+    </div>
+
     <!-- 🔵 HEADER SECTION -->
     <header class="site-header">
       <div class="header-left">
@@ -181,7 +326,7 @@
     <main class="esr-main">
       <section class="esr-hero">
         <div class="esr-hero-content">
-          <h1 class="esr-title">“Early Detection Saves Lives.”</h1>
+          <h1 class="esr-title">"Early Detection Saves Lives."</h1>
           <p class="esr-subtitle">
             Let's spread awareness, break the silence, and fight cancer with
             knowledge & kindness.
@@ -191,7 +336,7 @@
 
        <!-- Stage Selection Section -->
     <section class="stage-selection">
-      <h2 class="section-title">Services</h2>
+      <h2 class="services-title">Services</h2>
       <div class="stage-cards-container">
         <!-- Early Stage Card -->
         <div class="stage-card early-stage">
@@ -237,36 +382,66 @@
     </section>
     </main>
 
-    <!--Footer-->
-
-    <!-- <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-section">
-          <h3>CancerIndia</h3>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Disclaimer</a></li>
-            <li><a href="#">AIM</a></li>
-            <li><a href="#">Sitemap</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Website Policies</a></li>
-            <li><a href="#">FAQs</a></li>
-          </ul>
-        </div>
-        <div class="footer-section contact-info">
-          <h3>CONTACT INFO</h3>
-          <p><strong>ICMR-National Institute of Cancer Prevention and Research</strong><br>
-            Ministry of Health and Family Welfare, Government of India</p>
-          <p><strong>Address:</strong><br>
-            I – 7, Sector – 39, NOIDA,<br>
-            Distt. Gautam Buddha Nagar, U.P – 201301, INDIA</p>
-          <p><strong>Phone:</strong> +91 – 120 – 2446938<br>
-            PABX: 2446900, Fax: +91 – 120 – 2579473</p>
-        </div>
-      </div>
-    </footer>
-     -->
-
-    <script src="script.js"></script>
+    <script>
+      // Chatbot functionality
+      function toggleChat() {
+        const chatWindow = document.getElementById('chatWindow');
+        chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+      }
+      
+      function sendMessage() {
+        const userInput = document.getElementById('userInput');
+        const chatBody = document.getElementById('chatBody');
+        
+        if (userInput.value.trim() === '') return;
+        
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'chat-message user-message';
+        userMessage.textContent = userInput.value;
+        chatBody.appendChild(userMessage);
+        
+        // Clear input
+        userInput.value = '';
+        
+        // Scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+        
+        // Simulate bot response (in a real app, this would call an API)
+        setTimeout(() => {
+          const botMessage = document.createElement('div');
+          botMessage.className = 'chat-message bot-message';
+          botMessage.textContent = "I'm a simple chatbot. In a real implementation, I would provide helpful responses about cancer support and information.";
+          chatBody.appendChild(botMessage);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+      }
+      
+      // Allow pressing Enter to send message
+      document.getElementById('userInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+      
+      // Human assistant connection
+      function connectToAssistant() {
+        alert("Connecting you to a human cancer support specialist...\n\nIn a real implementation, this would initiate a live chat or call with a professional.");
+      }
+      
+      // Your existing toggleDropdown function would be here
+      function toggleDropdown(event, dropdownId, element) {
+        event.preventDefault();
+        event.stopPropagation();
+        const dropdown = document.getElementById(dropdownId);
+        dropdown.classList.toggle('show-dropdown');
+        
+        // Rotate arrow
+        const arrow = element.querySelector('.arrow');
+        if (arrow) {
+          arrow.classList.toggle('rotate');
+        }
+      }
+    </script>
   </body>
 </html>
