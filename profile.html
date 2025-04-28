@@ -64,45 +64,39 @@
             >
             <div class="dropdown" id="faicilities-dropdown">
               <ul class="dropdown-list" id="faicilities-options">
+                <li class="nav-item">
+                  <a class="nav-title" href="/esr.html">ESR</a>
+                </li>
                 <li>AI based Prediction</li>
                 <li>Connect with experts</li>
                 <li>Research & Development</li>
                 <li>Government Schemes</li>
               </ul>
-              <button
-                class="add-btn"
-                onclick="addOption('faicilities-options')"
-              >
-                + Add more
-              </button>
             </div>
           </div>
         </li>
+
         <!-- OTHER STATIC LINKS -->
 
+        <!-- Events -->
         <li class="nav-item has-dropdown">
           <div
             class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'faicilities-dropdown')"
+            onclick="toggleDropdown(event, 'events-dropdown', this)"
           >
             <span class="nav-title">Events<span class="arrow">▼</span></span>
-            <div class="dropdown" id="faicilities-dropdown">
-              <ul class="dropdown-list" id="faicilities-options">
-                <li><a href="/board.html" class="dropdown-item">Gallery</a></li>
+            <div class="dropdown" id="events-dropdown">
+              <ul class="dropdown-list" id="events-options">
                 <li>
-                  <a href="/events.html" class="dropdown-item">Recent Events</a>
+                  <a href="/events.html" class="dropdown-item">All Events</a>
+                </li>
+                <li>
+                  <a href="/gallery.html" class="dropdown-item">Gallery</a>
                 </li>
               </ul>
-              <button
-                class="add-btn"
-                onclick="addOption('faicilities-options')"
-              >
-                + Add more
-              </button>
             </div>
           </div>
         </li>
-        <li class="nav-item"><a class="nav-title" href="/esr.html">ESR</a></li>
 
         <!-- main website -->
         <li class="nav-item has-dropdown">
@@ -180,9 +174,6 @@
                   >
                 </li>
               </ul>
-              <button class="add-btn" onclick="addOption('main-options')">
-                + Add more
-              </button>
             </div>
           </div>
         </li>
