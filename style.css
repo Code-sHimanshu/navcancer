@@ -1737,8 +1737,8 @@ html {
 
 .stage-card {
   flex: 1;
-  min-width: 300px;
-  max-width: 350px;
+  min-width: 250px;
+  max-width: 300px;
   background: white;
   border-radius: 15px;
   padding: 30px;
@@ -1790,7 +1790,7 @@ html {
 }
 
 .during-stage .stage-icon {
-  background-color: #2196f3;
+  background-color: #FCF300;
 }
 
 .after-stage {
@@ -1804,7 +1804,7 @@ html {
 .stage-btn {
   display: inline-block;
   padding: 10px 25px;
-  background-color: #34495e;
+  background-color: #072ACB;
   color: white;
   text-decoration: none;
   border-radius: 30px;
