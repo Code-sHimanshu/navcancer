@@ -1731,17 +1731,17 @@ html {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 15px;
   margin-top: 40px;
 }
 
 .stage-card {
   flex: 1;
-  min-width: 250px;
+  min-width: 275px;
   max-width: 300px;
   background: white;
   border-radius: 15px;
-  padding: 30px;
+  padding: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
@@ -1778,15 +1778,15 @@ html {
 }
 
 .early-stage {
-  border-top-color: #4caf50;
+  border-top-color: #2196f3;
 }
 
 .early-stage .stage-icon {
-  background-color: #4caf50;
+  background-color: #2196f3;
 }
 
 .during-stage {
-  border-top-color: #2196f3;
+  border-top-color: #FCF300;
 }
 
 .during-stage .stage-icon {
@@ -1794,13 +1794,21 @@ html {
 }
 
 .after-stage {
-  border-top-color: #9c27b0;
+  border-top-color: #4caf50;
 }
 
 .after-stage .stage-icon {
-  background-color: #9c27b0;
+  background-color: #4caf50;
 }
 
+
+.after-stage2 {
+  border-top-color: #072ACB;
+}
+
+.after-stage2 .stage-icon {
+  background-color: #072ACB;
+}
 .stage-btn {
   display: inline-block;
   padding: 10px 25px;
