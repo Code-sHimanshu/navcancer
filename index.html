@@ -17,50 +17,50 @@
         right: 20px;
         z-index: 1000;
       }
-      
+
       .chatbot-btn {
-        background-color: #2c3e50;
+        background-color: darkgreen;
         color: white;
         border: none;
         border-radius: 50%;
-        width: 60px;
-        height: 60px;
+        width: 75px;
+        height: 75px;
         font-size: 24px;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
       }
-      
+
       .chatbot-btn:hover {
         background-color: #3498db;
         transform: scale(1.1);
       }
-      
+
       .assistant-container {
         position: fixed;
         bottom: 20px;
         right: 20px;
         z-index: 1000;
       }
-      
+
       .assistant-btn {
-        background-color: #e74c3c;
+        background-color: darkorange;
         color: white;
         border: none;
         border-radius: 50%;
-        width: 60px;
-        height: 60px;
+        width: 75px;
+        height: 75px;
         font-size: 24px;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
       }
-      
+
       .assistant-btn:hover {
-        background-color: #c0392b;
+        background-color: darkorange;
         transform: scale(1.1);
       }
-      
+
       /* Chat window (hidden by default) */
       .chat-window {
         display: none;
@@ -71,11 +71,11 @@
         height: 500px;
         background: white;
         border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         flex-direction: column;
         z-index: 1001;
       }
-      
+
       .chat-header {
         background: #2c3e50;
         color: white;
@@ -85,25 +85,25 @@
         justify-content: space-between;
         align-items: center;
       }
-      
+
       .chat-body {
         flex: 1;
         padding: 15px;
         overflow-y: auto;
       }
-      
+
       .chat-footer {
         padding: 15px;
         border-top: 1px solid #eee;
       }
-      
+
       .chat-input {
         width: 100%;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 5px;
       }
-      
+
       .close-chat {
         background: none;
         border: none;
@@ -140,11 +140,17 @@
         <div class="chat-body" id="chatBody">
           <!-- Chat messages will appear here -->
           <div class="chat-message bot-message">
-            Hello! I'm here to help with cancer-related information. How can I assist you today?
+            Hello! I'm here to help with cancer-related information. How can I
+            assist you today?
           </div>
         </div>
         <div class="chat-footer">
-          <input type="text" class="chat-input" placeholder="Type your message..." id="userInput">
+          <input
+            type="text"
+            class="chat-input"
+            placeholder="Type your message..."
+            id="userInput"
+          />
           <button class="sent-chat" onclick="sendMessage()">Send</button>
         </div>
       </div>
@@ -210,9 +216,15 @@
             >
             <div class="dropdown" id="faicilities-dropdown">
               <ul class="dropdown-list" id="faicilities-options">
-                <a href="/esr.html" class="dropdown-item">AI based Prediction</a>
-                <a href="/esr.html" class="dropdown-item">Connect with experts</a>
-                <a href="/esr.html" class="dropdown-item">Research & Development</a>
+                <a href="/esr.html" class="dropdown-item"
+                  >AI based Prediction</a
+                >
+                <a href="/esr.html" class="dropdown-item"
+                  >Connect with experts</a
+                >
+                <a href="/esr.html" class="dropdown-item"
+                  >Research & Development</a
+                >
                 <a href="#" class="dropdown-item">Government Schemes</a>
               </ul>
             </div>
@@ -324,6 +336,63 @@
     </nav>
 
     <main class="esr-main">
+      
+
+      <!-- Stage Selection Section -->
+      <section class="stage-selection">
+        <h2 class="services-title">Our Services</h2>
+        <div class="stage-cards-container">
+          <!-- Early Stage Card -->
+          <div class="stage-card early-stage">
+            <div class="stage-icon">
+              <i class="fas fa-search-plus"></i>
+            </div>
+            <h3>Patients</h3>
+            <p>
+              Access vital information on early detection techniques, recognize key symptoms, and explore preventive strategies to stay ahead.
+            </p>
+            <a href="#" class="stage-btn">Learn More</a>
+          </div>
+
+          <!-- During Stage Card -->
+          <div class="stage-card during-stage">
+            <div class="stage-icon">
+              <i class="fas fa-procedures"></i>
+            </div>
+            <h3>Healthcare Professionals</h3>
+            <p>
+              Discover comprehensive resources on treatment protocols, managing side effects, and enhancing patient quality of life.
+            </p>
+            <a href="#" class="stage-btn">Learn More</a>
+          </div>
+
+          <!-- After Treatment Card -->
+          <div class="stage-card after-stage">
+            <div class="stage-icon">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3>Industry Professionals</h3>
+            <p>
+              Gain insights into post-treatment care, recovery strategies, and reintegration into daily life for patients.
+            </p>
+            <a href="#" class="stage-btn">Learn More</a>
+          </div>
+
+          <!-- Others Card -->
+          <div class="stage-card after-stage">
+            <div class="stage-icon">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3>General Support</h3>
+            <p>
+              Explore guidance on recovery, follow-up care, and resources for supporting patients and their families.
+            </p>
+            <a href="#" class="stage-btn">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+
       <section class="esr-hero">
         <div class="esr-hero-content">
           <h1 class="esr-title">"Early Detection Saves Lives."</h1>
@@ -333,113 +402,72 @@
           </p>
         </div>
       </section>
-
-       <!-- Stage Selection Section -->
-    <section class="stage-selection">
-      <h2 class="services-title">Services</h2>
-      <div class="stage-cards-container">
-        <!-- Early Stage Card -->
-        <div class="stage-card early-stage">
-          <div class="stage-icon">
-            <i class="fas fa-search-plus"></i>
-          </div>
-          <h3>Patient</h3>
-          <p>Learn about early detection methods, symptoms to watch for, and preventive measures.</p>
-          <a href="#" class="stage-btn">See Patients</a>
-        </div>
-
-        <!-- During Stage Card -->
-        <div class="stage-card during-stage">
-          <div class="stage-icon">
-            <i class="fas fa-procedures"></i>
-          </div>
-          <h3>Health Care Professional</h3>
-          <p>Understand treatment options, managing side effects, and maintaining quality of life.</p>
-          <a href="#" class="stage-btn">See Patients</a>
-        </div>
-
-        <!-- After Treatment Card -->
-        <div class="stage-card after-stage">
-          <div class="stage-icon">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <h3>Industury Professional</h3>
-          <p>Guidance on recovery, follow-up care, and returning to normal life after treatment.</p>
-          <a href="#" class="stage-btn">See Patients</a>
-        </div>
-
-
-        <!-- After Treatment Card -->
-        <div class="stage-card after-stage">
-          <div class="stage-icon">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <h3>Others</h3>
-          <p>Guidance on recovery, follow-up care, and returning to normal life after treatment.</p>
-          <a href="#" class="stage-btn">See Patients</a>
-        </div>
-      </div>
-    </section>
     </main>
 
     <script>
       // Chatbot functionality
       function toggleChat() {
-        const chatWindow = document.getElementById('chatWindow');
-        chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        const chatWindow = document.getElementById("chatWindow");
+        chatWindow.style.display =
+          chatWindow.style.display === "flex" ? "none" : "flex";
       }
-      
+
       function sendMessage() {
-        const userInput = document.getElementById('userInput');
-        const chatBody = document.getElementById('chatBody');
-        
-        if (userInput.value.trim() === '') return;
-        
+        const userInput = document.getElementById("userInput");
+        const chatBody = document.getElementById("chatBody");
+
+        if (userInput.value.trim() === "") return;
+
         // Add user message
-        const userMessage = document.createElement('div');
-        userMessage.className = 'chat-message user-message';
+        const userMessage = document.createElement("div");
+        userMessage.className = "chat-message user-message";
         userMessage.textContent = userInput.value;
         chatBody.appendChild(userMessage);
-        
+
         // Clear input
-        userInput.value = '';
-        
+        userInput.value = "";
+
         // Scroll to bottom
         chatBody.scrollTop = chatBody.scrollHeight;
-        
+
         // Simulate bot response (in a real app, this would call an API)
         setTimeout(() => {
-          const botMessage = document.createElement('div');
-          botMessage.className = 'chat-message bot-message';
-          botMessage.textContent = "I'm a simple chatbot. In a real implementation, I would provide helpful responses about cancer support and information.";
+          const botMessage = document.createElement("div");
+          botMessage.className = "chat-message bot-message";
+          botMessage.textContent =
+            "I'm a simple chatbot. In a real implementation, I would provide helpful responses about cancer support and information.";
           chatBody.appendChild(botMessage);
           chatBody.scrollTop = chatBody.scrollHeight;
         }, 1000);
       }
-      
+
       // Allow pressing Enter to send message
-      document.getElementById('userInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          sendMessage();
-        }
-      });
-      
+      document
+        .getElementById("userInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+
       // Human assistant connection
       function connectToAssistant() {
-        alert("Connecting you to a human cancer support specialist...\n\nIn a real implementation, this would initiate a live chat or call with a professional.");
+        alert(
+          "Connecting you to a human cancer support specialist...\n\nIn a real implementation, this would initiate a live chat or call with a professional."
+        );
       }
-      
+
       // Your existing toggleDropdown function would be here
       function toggleDropdown(event, dropdownId, element) {
         event.preventDefault();
         event.stopPropagation();
         const dropdown = document.getElementById(dropdownId);
-        dropdown.classList.toggle('show-dropdown');
-        
+        dropdown.classList.toggle("show-dropdown");
+
         // Rotate arrow
-        const arrow = element.querySelector('.arrow');
+        const arrow = element.querySelector(".arrow");
         if (arrow) {
-          arrow.classList.toggle('rotate');
+          arrow.classList.toggle("rotate");
         }
       }
     </script>

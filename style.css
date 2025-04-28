@@ -30,7 +30,6 @@ body {
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid #007bba;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -769,7 +768,7 @@ body {
 
 /* Header */
 .section-header {
-  background-color: #007bba;
+  /* background-color: #007bba; */
   padding: 40px 20px;
   text-align: center;
   color: white;
