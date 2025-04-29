@@ -9,121 +9,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <style>
-      /* Chatbot and Assistant Styles */
-      .chatbot-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 999000;
-      }
-
-      .chatbot-btn {
-        background-color: #29bf12;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 75px;
-        height: 75px;
-        font-size: 24px;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
-
-      .chatbot-btn:hover {
-        background-color: #3498db;
-        transform: scale(1.1);
-      }
-
-      .assistant-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-      }
-
-      .assistant-btn {
-        background-color: darkorange;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 75px;
-        height: 75px;
-        font-size: 24px;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
-
-      .assistant-btn:hover {
-        background-color: darkorange;
-        transform: scale(1.1);
-      }
-
-      /* Chat window (hidden by default) */
-      .chat-window {
-        display: none;
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        width: 350px;
-        height: 500px;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        flex-direction: column;
-        z-index: 1001;
-      }
-
-      .chat-header {
-        background: #2c3e50;
-        color: white;
-        padding: 15px;
-        border-radius: 10px 10px 0 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .chat-body {
-        flex: 1;
-        padding: 15px;
-        overflow-y: auto;
-      }
-
-      .chat-footer {
-        padding: 15px;
-        border-top: 1px solid #eee;
-      }
-
-      .chat-input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-      }
-
-      .close-chat {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-      }
-      .sent-chat {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-left: 10px;
-      }
-      .sent-chat:hover {
-        background-color: #2980b9;
-      }
-    </style>
   </head>
 
   <body>
@@ -166,12 +51,20 @@
     <!-- 🔵 HEADER SECTION -->
     <header class="site-header">
       <div class="header-left">
-        <a href="/index.html"
-          ><img src="assets/logo.jpg" alt="India Against Cancer" class="logo"
-        /></a>
+        <a href="https://shuats.edu.in/">
+          <img src="assets/shuatslogo.jpg" alt="India Against Cancer" class="logo"/>
+        </a>
       </div>
-      <div class="header-right">
-        <h1>International Cancer Patient Coalition</h1>
+
+      <div class="header-right"></div>
+
+      <h1>International Cancer Patient Coalition</h1>
+      <div class="header-right"></div>
+      <div class="header-left">
+        <a href="./index.html">
+          <img src="assets/logo.jpg" alt="India Against Cancer" class="logo"/>
+        </a>
+      </div>
       </div>
     </header>
 
@@ -216,7 +109,7 @@
             >
             <div class="dropdown" id="faicilities-dropdown">
               <ul class="dropdown-list" id="faicilities-options">
-                <a href="/esr.html" class="dropdown-item"
+                <a href="https://lungscan-ai.streamlit.app" class="dropdown-item"
                   >AI based Prediction</a
                 >
                 <a href="/esr.html" class="dropdown-item"
@@ -404,74 +297,6 @@
       </section>
     </main>
 
-    <!-- Who we are -->
-    <section class="who-we-are"></section>
-    <script>
-      // Chatbot functionality
-      function toggleChat() {
-        const chatWindow = document.getElementById("chatWindow");
-        chatWindow.style.display =
-          chatWindow.style.display === "flex" ? "none" : "flex";
-      }
-
-      function sendMessage() {
-        const userInput = document.getElementById("userInput");
-        const chatBody = document.getElementById("chatBody");
-
-        if (userInput.value.trim() === "") return;
-
-        // Add user message
-        const userMessage = document.createElement("div");
-        userMessage.className = "chat-message user-message";
-        userMessage.textContent = userInput.value;
-        chatBody.appendChild(userMessage);
-
-        // Clear input
-        userInput.value = "";
-
-        // Scroll to bottom
-        chatBody.scrollTop = chatBody.scrollHeight;
-
-        // Simulate bot response (in a real app, this would call an API)
-        setTimeout(() => {
-          const botMessage = document.createElement("div");
-          botMessage.className = "chat-message bot-message";
-          botMessage.textContent =
-            "I'm a simple chatbot. In a real implementation, I would provide helpful responses about cancer support and information.";
-          chatBody.appendChild(botMessage);
-          chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1000);
-      }
-
-      // Allow pressing Enter to send message
-      document
-        .getElementById("userInput")
-        .addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            sendMessage();
-          }
-        });
-
-      // Human assistant connection
-      function connectToAssistant() {
-        alert(
-          "Connecting you to a human cancer support specialist...\n\nIn a real implementation, this would initiate a live chat or call with a professional."
-        );
-      }
-
-      // Your existing toggleDropdown function would be here
-      function toggleDropdown(event, dropdownId, element) {
-        event.preventDefault();
-        event.stopPropagation();
-        const dropdown = document.getElementById(dropdownId);
-        dropdown.classList.toggle("show-dropdown");
-
-        // Rotate arrow
-        const arrow = element.querySelector(".arrow");
-        if (arrow) {
-          arrow.classList.toggle("rotate");
-        }
-      }
-    </script>
+<script src="./script.js"></script>
   </body>
 </html>
