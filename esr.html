@@ -1,178 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Early Stage Recognition | Lung Cancer Prediction System</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
+  <!-- Chatbot Button Top Right -->
+  <div class="chatbot-container">
+    <button class="chatbot-btn" onclick="toggleChat()">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <h3>Cancer Support Chatbot</h3>
+        <button class="close-chat" onclick="toggleChat()">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <!-- Chat messages will appear here -->
+        <div class="chat-message bot-message">
+          Hello! I'm here to help with cancer-related information. How can I
+          assist you today?
+        </div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" class="chat-input" placeholder="Type your message..." id="userInput" />
+        <button class="sent-chat" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Human Assistant Button Bottom Right -->
+  <div class="assistant-container">
+    <button class="assistant-btn" onclick="connectToAssistant()">
+      <i class="fas fa-user-md"></i>
+    </button>
+  </div>
 
   <!-- 🔵 HEADER SECTION -->
   <header class="site-header">
     <div class="header-left">
-      <a href="/index.html"><img src="assets/logo.jpg" alt="India Against Cancer" class="logo"/></a>
+      <a href="https://shuats.edu.in/">
+        <img src="assets/shuatslogo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
     </div>
-    <div class="header-right">
-      <h1>International Cancer Patient Coalition</h1>
-    </div>    
+
+    <div class="header-right"></div>
+
+    <h1>International Cancer Patient Coalition</h1>
+    <div class="header-right"></div>
+    <div class="header-left">
+      <a href="./index.html">
+        <img src="assets/logo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
+    </div>
+    </div>
   </header>
 
-    <!-- 🧭 NAVIGATION BAR -->
-    <nav class="navbar">
-      <ul class="nav-list">
-        <!-- HOME -->
-        <li class="nav-item">
-          <a href="/index.html" class="nav-title">Home</a>
-        </li>
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="/index.html" class="nav-title">Home</a>
+      </li>
 
-        <!-- KNOW ABOUT CANCER -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'cancer-dropdown', this)"
-          >
-            <span class="nav-title">About Us<span class="arrow">▼</span></span>
-            <div class="dropdown" id="cancer-dropdown">
-              <ul class="dropdown-list" id="cancer-options">
-                <li><a href="/about.html" class="dropdown-item">History</a></li>
-                <li>
-                  <a href="/profile.html" class="dropdown-item">Profile</a>
-                </li>
-                <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
-                <li>
-                  <a href="/board.html" class="dropdown-item">Administration</a>
-                </li>
-              </ul>
-            </div>
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="/about.html" class="dropdown-item">History</a></li>
+              <li>
+                <a href="/profile.html" class="dropdown-item">Profile</a>
+              </li>
+              <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
+              <li>
+                <a href="/board.html" class="dropdown-item">Administration</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- SERVICES OFFERED -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'faicilities-dropdown')"
-          >
-            <span class="nav-title"
-              >Services Offered<span class="arrow">▼</span></span
-            >
-            <div class="dropdown" id="faicilities-dropdown">
-              <ul class="dropdown-list" id="faicilities-options">
-                <a href="/esr.html" class="dropdown-item">ESR</a>
-                <li>AI based Prediction</li>
-                <li>Connect with experts</li>
-                <li>Research & Development</li>
-                <li>Government Schemes</li>
-              </ul>
-            </div>
+      <!-- SERVICES OFFERED -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+          <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+          <div class="dropdown" id="faicilities-dropdown">
+            <ul class="dropdown-list" id="faicilities-options">
+              <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
+              <a href="/esr.html" class="dropdown-item">Connect with experts</a>
+              <a href="/esr.html" class="dropdown-item">Research & Development</a>
+              <a href="#" class="dropdown-item">Government Schemes</a>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- OTHER STATIC LINKS -->
+      <!-- OTHER STATIC LINKS -->
 
-        <!-- Events -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'events-dropdown', this)"
-          >
-            <span class="nav-title">Events<span class="arrow">▼</span></span>
-            <div class="dropdown" id="events-dropdown">
-              <ul class="dropdown-list" id="events-options">
-                <li>
-                  <a href="/events.html" class="dropdown-item">All Events</a>
-                </li>
-                <li>
-                  <a href="/gallery.html" class="dropdown-item">Gallery</a>
-                </li>
-              </ul>
-            </div>
+      <!-- Events -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+          <span class="nav-title">Events<span class="arrow">▼</span></span>
+          <div class="dropdown" id="events-dropdown">
+            <ul class="dropdown-list" id="events-options">
+              <li>
+                <a href="/events.html" class="dropdown-item">All Events</a>
+              </li>
+              <li>
+                <a href="/gallery.html" class="dropdown-item">Gallery</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- main website -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'main-dropdown', this)"
-          >
-            <span class="nav-title"
-              >External Links<span class="arrow">▼</span></span
-            >
-            <div class="dropdown" id="main-dropdown">
-              <ul class="dropdown-list" id="main-options">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://shuats.edu.in/"
-                    target="_blank"
-                    >SHUATS</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://unite4cancer.com/"
-                    target="_blank"
-                    >ICPC</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.mohfw.gov.in/"
-                    target="_blank"
-                    >MOHFW</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.icmr.gov.in/"
-                    target="_blank"
-                    >ICMR</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dbtindia.gov.in/"
-                    target="_blank"
-                    >DBT</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dst.gov.in/"
-                    target="_blank"
-                    >DST</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.csir.res.in/"
-                    target="_blank"
-                    >CSIR</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dhr.gov.in/"
-                    target="_blank"
-                    >DHR</a
-                  >
-                </li>
-              </ul>
-            </div>
+      <!-- main website -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">External Links<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li>
+                <a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </li>
+    </ul>
+  </nav>
 
   <!-- ✨ MAIN CONTENT SECTION -->
   <main class="esr-main">
@@ -263,12 +248,12 @@
 
     // Show/hide content sections based on which card is clicked
     document.querySelectorAll('.stage-card').forEach(card => {
-      card.addEventListener('click', function() {
+      card.addEventListener('click', function () {
         // Hide all content sections
         document.querySelectorAll('.stage-content').forEach(section => {
           section.style.display = 'none';
         });
-        
+
         // Show the corresponding content section
         const targetId = this.querySelector('a').getAttribute('href');
         document.querySelector(targetId).style.display = 'block';
@@ -276,13 +261,14 @@
     });
 
     // Initially hide all content sections except the first one
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.stage-content').forEach((section, index) => {
-        if(index !== 0) {
+        if (index !== 0) {
           section.style.display = 'none';
         }
       });
     });
   </script>
 </body>
+
 </html>

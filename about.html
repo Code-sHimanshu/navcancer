@@ -1,249 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | Lung Cancer Portal</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 </head>
 <body>
-  
+  <!-- Chatbot Button Top Right -->
+  <div class="chatbot-container">
+    <button class="chatbot-btn" onclick="toggleChat()">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <h3>Cancer Support Chatbot</h3>
+        <button class="close-chat" onclick="toggleChat()">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <!-- Chat messages will appear here -->
+        <div class="chat-message bot-message">
+          Hello! I'm here to help with cancer-related information. How can I
+          assist you today?
+        </div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" class="chat-input" placeholder="Type your message..." id="userInput" />
+        <button class="sent-chat" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
 
+  <!-- Human Assistant Button Bottom Right -->
+  <div class="assistant-container">
+    <button class="assistant-btn" onclick="connectToAssistant()">
+      <i class="fas fa-user-md"></i>
+    </button>
+  </div>
+
+  <!-- 🔵 HEADER SECTION -->
   <header class="site-header">
     <div class="header-left">
-      <a href="/index.html"><img src="assets/logo.jpg" alt="India Against Cancer" class="logo"/></a>
+      <a href="https://shuats.edu.in/">
+        <img src="assets/shuatslogo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
     </div>
-    <div class="header-right">
-      <h1>About Us</h1>
-    </div>    
+
+    <div class="header-right"></div>
+
+    <h1>International Cancer Patient Coalition</h1>
+    <div class="header-right"></div>
+    <div class="header-left">
+      <a href="./index.html">
+        <img src="assets/logo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
+    </div>
+    </div>
   </header>
-    <!-- 🧭 NAVIGATION BAR -->
-    <nav class="navbar">
-      <ul class="nav-list">
-        <!-- HOME -->
-        <li class="nav-item">
-          <a href="/index.html" class="nav-title">Home</a>
-        </li>
 
-        <!-- KNOW ABOUT CANCER -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'cancer-dropdown', this)"
-          >
-            <span class="nav-title">About Us<span class="arrow">▼</span></span>
-            <div class="dropdown" id="cancer-dropdown">
-              <ul class="dropdown-list" id="cancer-options">
-                <li><a href="/about.html" class="dropdown-item">History</a></li>
-                <li>
-                  <a href="/profile.html" class="dropdown-item">Profile</a>
-                </li>
-                <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
-                <li>
-                  <a href="/board.html" class="dropdown-item">Administration</a>
-                </li>
-              </ul>
-            </div>
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="/index.html" class="nav-title">Home</a>
+      </li>
+
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="/about.html" class="dropdown-item">History</a></li>
+              <li>
+                <a href="/profile.html" class="dropdown-item">Profile</a>
+              </li>
+              <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
+              <li>
+                <a href="/board.html" class="dropdown-item">Administration</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- SERVICES OFFERED -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'faicilities-dropdown')"
-          >
-            <span class="nav-title"
-              >Services Offered<span class="arrow">▼</span></span
-            >
-            <div class="dropdown" id="faicilities-dropdown">
-              <ul class="dropdown-list" id="faicilities-options">
-                <a href="/esr.html" class="dropdown-item">ESR</a>
-                <li>AI based Prediction</li>
-                <li>Connect with experts</li>
-                <li>Research & Development</li>
-                <li>Government Schemes</li>
-              </ul>
-            </div>
+      <!-- SERVICES OFFERED -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+          <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+          <div class="dropdown" id="faicilities-dropdown">
+            <ul class="dropdown-list" id="faicilities-options">
+              <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
+              <a href="/esr.html" class="dropdown-item">Connect with experts</a>
+              <a href="/esr.html" class="dropdown-item">Research & Development</a>
+              <a href="#" class="dropdown-item">Government Schemes</a>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- OTHER STATIC LINKS -->
+      <!-- OTHER STATIC LINKS -->
 
-        <!-- Events -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'events-dropdown', this)"
-          >
-            <span class="nav-title">Events<span class="arrow">▼</span></span>
-            <div class="dropdown" id="events-dropdown">
-              <ul class="dropdown-list" id="events-options">
-                <li>
-                  <a href="/events.html" class="dropdown-item">All Events</a>
-                </li>
-                <li>
-                  <a href="/gallery.html" class="dropdown-item">Gallery</a>
-                </li>
-              </ul>
-            </div>
+      <!-- Events -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+          <span class="nav-title">Events<span class="arrow">▼</span></span>
+          <div class="dropdown" id="events-dropdown">
+            <ul class="dropdown-list" id="events-options">
+              <li>
+                <a href="/events.html" class="dropdown-item">All Events</a>
+              </li>
+              <li>
+                <a href="/gallery.html" class="dropdown-item">Gallery</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- main website -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'main-dropdown', this)"
-          >
-            <span class="nav-title"
-              >External Links<span class="arrow">▼</span></span
-            >
-            <div class="dropdown" id="main-dropdown">
-              <ul class="dropdown-list" id="main-options">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://shuats.edu.in/"
-                    target="_blank"
-                    >SHUATS</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://unite4cancer.com/"
-                    target="_blank"
-                    >ICPC</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.mohfw.gov.in/"
-                    target="_blank"
-                    >MOHFW</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.icmr.gov.in/"
-                    target="_blank"
-                    >ICMR</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dbtindia.gov.in/"
-                    target="_blank"
-                    >DBT</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dst.gov.in/"
-                    target="_blank"
-                    >DST</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.csir.res.in/"
-                    target="_blank"
-                    >CSIR</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dhr.gov.in/"
-                    target="_blank"
-                    >DHR</a
-                  >
-                </li>
-              </ul>
-            </div>
+      <!-- main website -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">External Links<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li>
+                <a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </li>
+    </ul>
+  </nav>
 
 
   <!-- ICPC Section -->
-<!-- ICPC & SHUATS Tabs Section -->
-<div class="tabs-container container" data-aos="fade-up" data-aos-delay="100">
+  <!-- ICPC & SHUATS Tabs Section -->
+  <div class="tabs-container container" data-aos="fade-up" data-aos-delay="100">
     <div class="tabs-header">
       <button class="tab-btn active" onclick="openTab(event, 'icpc-tab')">ICPC</button>
       <button class="tab-btn" onclick="openTab(event, 'shuats-tab')">SHUATS</button>
     </div>
-  
+
     <div id="icpc-tab" class="tab-content active">
       <div class="text-center">
         <img src="assets/logo.jpg" alt="ICPC Logo" class="logo" />
         <div class="unite4cancer-title">Unite4Cancer</div>
       </div>
-  
+
       <div class="blue-bg mt-4">
         <p>
-          ICPC is a coalition of the willing, of all those who share the ambition to improve access to cancer care for patients everywhere, and who understand that cooperation makes the goal more attainable.
+          ICPC is a coalition of the willing, of all those who share the ambition to improve access to cancer care for
+          patients everywhere, and who understand that cooperation makes the goal more attainable.
         </p>
       </div>
-  
+
       <h3 class="section-title mt-5">Who we are</h3>
       <p>
-        The International Cancer Patients Coalition is a coalition of stakeholders across the world dedicated to promoting the best and most innovative access to care for cancer patients everywhere, and in a timely manner.
-        
-        ICPC is a genuinely multi-stakeholder non-profit organisation with no prejudices – and no patience with discussion or politics without actions.
-        
-        ICPC is a coalition of the willing, of all those who share the ambition to improve access to cancer care for patients everywhere, and who understand that cooperation makes the goal more attainable.
-        
-        ICPC is a one-stop shop to engage with stakeholders across different regions through different high level engagement mechanisms, from academic publications to hackathons, with the overall aim of increasing innovation literacy among all stakeholders and at institutional level, for effective policy shaping to influence the global approach to cancer care.</p>
-        <br>
-        <p>ICPC facilitates cross-fertilisation between all stakeholders to highlight where barriers exist and suggest where solutions lie, to alert policy makers to the needs and to press for action. It is determined to see institutional frameworks ensure adequate services and rational allocation of resources to support healthcare systems delivering innovation for the benefit of patients and societies. By purposely involving all stakeholders, from patients to researchers, politicians and payers, hospitals and data scientists, public and private sectors, ICPC is the embodiment of realistic recognition that no great results are possible without collective effort, and no single group of stakeholders is capable of meeting the magnitude of the challenge cancer poses.</p>
-        <br>
-        <p>
-            In the video below, Denis Horgan, ICPC’s Secretary General, gives valuable insights on the fundamentals and values that are at the base of the organization and gives further information about its structure.</p>
-  
+        The International Cancer Patients Coalition is a coalition of stakeholders across the world dedicated to
+        promoting the best and most innovative access to care for cancer patients everywhere, and in a timely manner.
+
+        ICPC is a genuinely multi-stakeholder non-profit organisation with no prejudices – and no patience with
+        discussion or politics without actions.
+
+        ICPC is a coalition of the willing, of all those who share the ambition to improve access to cancer care for
+        patients everywhere, and who understand that cooperation makes the goal more attainable.
+
+        ICPC is a one-stop shop to engage with stakeholders across different regions through different high level
+        engagement mechanisms, from academic publications to hackathons, with the overall aim of increasing innovation
+        literacy among all stakeholders and at institutional level, for effective policy shaping to influence the global
+        approach to cancer care.</p>
+      <br>
+      <p>ICPC facilitates cross-fertilisation between all stakeholders to highlight where barriers exist and suggest
+        where solutions lie, to alert policy makers to the needs and to press for action. It is determined to see
+        institutional frameworks ensure adequate services and rational allocation of resources to support healthcare
+        systems delivering innovation for the benefit of patients and societies. By purposely involving all
+        stakeholders, from patients to researchers, politicians and payers, hospitals and data scientists, public and
+        private sectors, ICPC is the embodiment of realistic recognition that no great results are possible without
+        collective effort, and no single group of stakeholders is capable of meeting the magnitude of the challenge
+        cancer poses.</p>
+      <br>
+      <p>
+        In the video below, Denis Horgan, ICPC’s Secretary General, gives valuable insights on the fundamentals and
+        values that are at the base of the organization and gives further information about its structure.</p>
+
       <iframe src="https://www.youtube.com/embed/fpyyZNakxVU" title="ICPC Video" allowfullscreen></iframe>
-  
+
       <div class="grey-bg mt-4">
         <p>
-            ICPC functions as a meeting of minds on what needs to be done, and as a fulcrum for action so as to achieve the greatest impact on the ground.
+          ICPC functions as a meeting of minds on what needs to be done, and as a fulcrum for action so as to achieve
+          the greatest impact on the ground.
         </p>
       </div>
 
       <h3 class="section-title mt-5">What do we offer</h3>
-      <p>Many of the current cancer organisations are providing great services in their chosen field. But each is catering to its specific subject area and geography</p>
+      <p>Many of the current cancer organisations are providing great services in their chosen field. But each is
+        catering to its specific subject area and geography</p>
       <br>
       <p>ICPC is addressing the quest to have across the world coalitions of professionals,
-        patients and decision-makers dedicated to patient diagnosis and care, and insistent on boosting understanding of disease and addressing delays in access to optimal care.</p>
-  
+        patients and decision-makers dedicated to patient diagnosis and care, and insistent on boosting understanding of
+        disease and addressing delays in access to optimal care.</p>
+
       <a href="https://unite4cancer.com/" class="btn-linkout" target="_blank">Visit ICPC Website</a>
     </div>
-  
+
     <div id="shuats-tab" class="tab-content">
       <div class="text-center">
         <img src="assets/shuatslogo.jpg" alt="SHUATS Logo" class="logo" />
-        <div class="unite4cancer-title">Welcome to Sam Higginbottom University of Agriculture, Technology & Sciences (SHUATS)</div>
+        <div class="unite4cancer-title">Welcome to Sam Higginbottom University of Agriculture, Technology & Sciences
+          (SHUATS)</div>
       </div>
 
-      <div class="blue-bg mt-4" >
+      <div class="blue-bg mt-4">
         <p>
-            A Premier Institution Committed to Excellence in Education, Research, and Development
+          A Premier Institution Committed to Excellence in Education, Research, and Development
         </p>
       </div>
 
       <h5 class="section-title">Who we are</h5>
       <p>
-        The Sam Higginbottom University of Agriculture, Technology And Sciences (SHUATS) is established under U.P. Act No. 35 of 2016, as passed by the Uttar Pradesh Legislature. SHUATS is established and administered by the Ecumenical Minority Christian Society namely the Sam Higginbottom Educational and Charitable Society registered under the Society Registration Act, 1860 in the State of Uttar Pradesh. The University is a united endeavour of the Christian community in India for promoting rural life and development in conformity with the Christian vision of human kind and the creation. The University is held in trust as a common ecumenical heritage by the Christian Churches and Christian Organizations of the country. It seeks to be a national centre of professional excellence in education and service to the people with the participation of students and faculty members from all over India.
+        The Sam Higginbottom University of Agriculture, Technology And Sciences (SHUATS) is established under U.P. Act
+        No. 35 of 2016, as passed by the Uttar Pradesh Legislature. SHUATS is established and administered by the
+        Ecumenical Minority Christian Society namely the Sam Higginbottom Educational and Charitable Society registered
+        under the Society Registration Act, 1860 in the State of Uttar Pradesh. The University is a united endeavour of
+        the Christian community in India for promoting rural life and development in conformity with the Christian
+        vision of human kind and the creation. The University is held in trust as a common ecumenical heritage by the
+        Christian Churches and Christian Organizations of the country. It seeks to be a national centre of professional
+        excellence in education and service to the people with the participation of students and faculty members from
+        all over India.
       </p>
-  
+
       <h5 class="section-title">Core Values</h5>
       <ul>
         <li>Responsible stewardship of the environment and its resources</li>
@@ -254,7 +269,7 @@
       </ul>
 
       <iframe src="https://www.youtube.com/embed/UpWkGQErSoY" title="SHUATS Video" allowfullscreen></iframe>
-  
+
       <h5 class="section-title">Legacy & Achievements</h5>
       <p>In all of the above, the University helps the young and old...</p>
       <p>Dr. Sam Higginbottom established Allahabad Agricultural Institute (AAI) in 1910...</p>
@@ -270,48 +285,51 @@
 
       <div class="grey-bg mt-4">
         <p>
-            SHUATS aims to empower students with practical skills, innovative research, and leadership training. We maintain strong ties with industries and multinational corporations, offering students ample opportunities for career growth.
+          SHUATS aims to empower students with practical skills, innovative research, and leadership training. We
+          maintain strong ties with industries and multinational corporations, offering students ample opportunities for
+          career growth.
         </p>
       </div>
       <a href="https://shuats.edu.in/index.asp" class="btn-linkout" target="_blank">Visit SHUATS Website</a>
     </div>
   </div>
-  
+
 
 
   <!-- Footer will be added by you -->
 
   <!-- <footer class="site-footer"> -->
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>CancerIndia</h3>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Disclaimer</a></li>
-          <li><a href="#">AIM</a></li>
-          <li><a href="#">Sitemap</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Website Policies</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-section contact-info">
-        <h3>CONTACT INFO</h3>
-        <p><strong>ICMR-National Institute of Cancer Prevention and Research</strong><br>
-          Ministry of Health and Family Welfare, Government of India</p>
-        <p><strong>Address:</strong><br>
-          I – 7, Sector – 39, NOIDA,<br>
-          Distt. Gautam Buddha Nagar, U.P – 201301, INDIA</p>
-        <p><strong>Phone:</strong> +91 – 120 – 2446938<br>
-          PABX: 2446900, Fax: +91 – 120 – 2579473</p>
-      </div>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>CancerIndia</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">AIM</a></li>
+        <li><a href="#">Sitemap</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Website Policies</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
     </div>
+    <div class="footer-section contact-info">
+      <h3>CONTACT INFO</h3>
+      <p><strong>ICMR-National Institute of Cancer Prevention and Research</strong><br>
+        Ministry of Health and Family Welfare, Government of India</p>
+      <p><strong>Address:</strong><br>
+        I – 7, Sector – 39, NOIDA,<br>
+        Distt. Gautam Buddha Nagar, U.P – 201301, INDIA</p>
+      <p><strong>Phone:</strong> +91 – 120 – 2446938<br>
+        PABX: 2446900, Fax: +91 – 120 – 2579473</p>
+    </div>
+  </div>
   <!-- </footer> -->
-  
+
 
   <script src="script.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
+  <script>AOS.init();</script>
 
 </body>
+
 </html>

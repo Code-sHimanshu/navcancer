@@ -1,204 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lung Cancer Prediction System</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
+
+  <!-- Chatbot Button Top Right -->
+  <div class="chatbot-container">
+    <button class="chatbot-btn" onclick="toggleChat()">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <h3>Cancer Support Chatbot</h3>
+        <button class="close-chat" onclick="toggleChat()">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <!-- Chat messages will appear here -->
+        <div class="chat-message bot-message">
+          Hello! I'm here to help with cancer-related information. How can I
+          assist you today?
+        </div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" class="chat-input" placeholder="Type your message..." id="userInput" />
+        <button class="sent-chat" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Human Assistant Button Bottom Right -->
+  <div class="assistant-container">
+    <button class="assistant-btn" onclick="connectToAssistant()">
+      <i class="fas fa-user-md"></i>
+    </button>
+  </div>
 
   <!-- 🔵 HEADER SECTION -->
   <header class="site-header">
     <div class="header-left">
-      <a href="/index.html"><img src="assets/logo.jpg" alt="India Against Cancer" class="logo"/></a>
+      <a href="https://shuats.edu.in/">
+        <img src="assets/shuatslogo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
     </div>
-    <div class="header-right">
-      <h1>International Cancer Patient Coalition</h1>
-    </div>    
+
+    <div class="header-right"></div>
+
+    <h1>International Cancer Patient Coalition</h1>
+    <div class="header-right"></div>
+    <div class="header-left">
+      <a href="./index.html">
+        <img src="assets/logo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
+    </div>
   </header>
 
-    <!-- 🧭 NAVIGATION BAR -->
-    <nav class="navbar">
-      <ul class="nav-list">
-        <!-- HOME -->
-        <li class="nav-item">
-          <a href="/index.html" class="nav-title">Home</a>
-        </li>
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="/index.html" class="nav-title">Home</a>
+      </li>
 
-        <!-- KNOW ABOUT CANCER -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'cancer-dropdown', this)"
-          >
-            <span class="nav-title">About Us<span class="arrow">▼</span></span>
-            <div class="dropdown" id="cancer-dropdown">
-              <ul class="dropdown-list" id="cancer-options">
-                <li><a href="/about.html" class="dropdown-item">History</a></li>
-                <li>
-                  <a href="/profile.html" class="dropdown-item">Profile</a>
-                </li>
-                <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
-                <li>
-                  <a href="/board.html" class="dropdown-item">Administration</a>
-                </li>
-              </ul>
-            </div>
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="/about.html" class="dropdown-item">History</a></li>
+              <li>
+                <a href="/profile.html" class="dropdown-item">Profile</a>
+              </li>
+              <li><a href="/faq.html" class="dropdown-item">FAQs</a></li>
+              <li>
+                <a href="/board.html" class="dropdown-item">Administration</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- SERVICES OFFERED -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'faicilities-dropdown')"
-          >
-            <span class="nav-title"
-              >Services Offered<span class="arrow">▼</span></span
-            >
-            <div class="dropdown" id="faicilities-dropdown">
-              <ul class="dropdown-list" id="faicilities-options">
-                <a href="/esr.html" class="dropdown-item">ESR</a>
-                <li>AI based Prediction</li>
-                <li>Connect with experts</li>
-                <li>Research & Development</li>
-                <li>Government Schemes</li>
-              </ul>
-            </div>
+      <!-- SERVICES OFFERED -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+          <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+          <div class="dropdown" id="faicilities-dropdown">
+            <ul class="dropdown-list" id="faicilities-options">
+              <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
+              <a href="/esr.html" class="dropdown-item">Connect with experts</a>
+              <a href="/esr.html" class="dropdown-item">Research & Development</a>
+              <a href="#" class="dropdown-item">Government Schemes</a>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- OTHER STATIC LINKS -->
+      <!-- OTHER STATIC LINKS -->
 
-        <!-- Events -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'events-dropdown', this)"
-          >
-            <span class="nav-title">Events<span class="arrow">▼</span></span>
-            <div class="dropdown" id="events-dropdown">
-              <ul class="dropdown-list" id="events-options">
-                <li>
-                  <a href="/events.html" class="dropdown-item">All Events</a>
-                </li>
-                <li>
-                  <a href="/gallery.html" class="dropdown-item">Gallery</a>
-                </li>
-              </ul>
-            </div>
+      <!-- Events -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+          <span class="nav-title">Events<span class="arrow">▼</span></span>
+          <div class="dropdown" id="events-dropdown">
+            <ul class="dropdown-list" id="events-options">
+              <li>
+                <a href="/events.html" class="dropdown-item">All Events</a>
+              </li>
+              <li>
+                <a href="/gallery.html" class="dropdown-item">Gallery</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- main website -->
-        <li class="nav-item has-dropdown">
-          <div
-            class="dropdown-wrapper"
-            onclick="toggleDropdown(event, 'main-dropdown', this)"
-          >
-            <span class="nav-title"
-              >External Links<span class="arrow">▼</span></span
-            >
-            <div class="dropdown" id="main-dropdown">
-              <ul class="dropdown-list" id="main-options">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://shuats.edu.in/"
-                    target="_blank"
-                    >SHUATS</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://unite4cancer.com/"
-                    target="_blank"
-                    >ICPC</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.mohfw.gov.in/"
-                    target="_blank"
-                    >MOHFW</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.icmr.gov.in/"
-                    target="_blank"
-                    >ICMR</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dbtindia.gov.in/"
-                    target="_blank"
-                    >DBT</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dst.gov.in/"
-                    target="_blank"
-                    >DST</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://www.csir.res.in/"
-                    target="_blank"
-                    >CSIR</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://dhr.gov.in/"
-                    target="_blank"
-                    >DHR</a
-                  >
-                </li>
-              </ul>
-            </div>
+      <!-- main website -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">External Links<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li>
+                <a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </nav>
-
+        </div>
+      </li>
+    </ul>
+  </nav>
 
 
   <!-- 🔷 MAIN CONTENT -->
 
   <!-- Events Page Content -->
-<div class="container">
+  <div class="container">
 
     <!-- Section: International Cancer Conferences -->
     <section class="events-description fade-in">
       <h2><i class="fas fa-globe-americas"></i> International Cancer Conferences</h2>
-      <p>ICPC organizes forward-looking conferences across the globe to bridge implementation gaps in cancer care. These events bring together policymakers, healthcare professionals, researchers, and advocates to foster collaboration and address region-specific challenges.</p>
+      <p>ICPC organizes forward-looking conferences across the globe to bridge implementation gaps in cancer care. These
+        events bring together policymakers, healthcare professionals, researchers, and advocates to foster collaboration
+        and address region-specific challenges.</p>
     </section>
-  
+
     <!-- Section: Why It Matters -->
     <section class="why-it-matters fade-in">
       <h3><i class="fas fa-heartbeat"></i>Why it matters</h3>
-      <p>These conferences drive regional solutions and global collaboration, integrating innovations like digital pathology and advanced diagnostics into healthcare systems.</p>
+      <p>These conferences drive regional solutions and global collaboration, integrating innovations like digital
+        pathology and advanced diagnostics into healthcare systems.</p>
     </section>
-  
+
     <!-- Section: Get Involved -->
     <section class="get-involved fade-in">
       <h3><i class="fas fa-hands-helping"></i> Get involved</h3>
       <p>Attend our events, present your findings, or sponsor regional initiatives to advance cancer care.</p>
     </section>
-  
+
     <!-- Section: Upcoming Events -->
     <section class="events-section">
       <h3>Upcoming events</h3>
@@ -209,28 +196,28 @@
           <h4>Unity in Action: MENA–EU Partnership</h4>
           <p>Rome, Italy - April 15, 2025</p>
         </div>
-  
+
         <!-- Event Card 2 -->
         <div class="event-card">
           <img src="assets/event2.jpg" alt="ESMO Congress">
           <h4>ESMO Congress</h4>
           <p>Berlin, Germany - October 2025</p>
         </div>
-  
+
         <!-- Event Card 3 -->
         <div class="event-card">
           <img src="assets/event3.jpg" alt="AOS 2025">
           <h4>AOS 2025</h4>
           <p>Seoul, South Korea - July 2025</p>
         </div>
-  
+
         <!-- Event Card 4 -->
         <div class="event-card">
           <img src="assets/event4.jpg" alt="Twelfth EDCTP Forum">
           <h4>Twelfth EDCTP Forum</h4>
           <p>Kigali, Rwanda - June 2025</p>
         </div>
-  
+
         <!-- Event Card 5 -->
         <div class="event-card">
           <img src="assets/event5.jpg" alt="MEP meeting">
@@ -239,7 +226,7 @@
         </div>
       </div>
     </section>
-  
+
     <!-- Section: Previous Events -->
     <section class="events-section">
       <h3>Previous events</h3>
@@ -250,42 +237,42 @@
           <h4>Kumbh Mela: High-Level Political Summit</h4>
           <p>Prayagraj, India - February 20-21, 2025</p>
         </div>
-  
+
         <!-- Event Card 2 -->
         <div class="event-card">
           <img src="assets/event7.jpg" alt="BGICC">
           <h4>BGICC</h4>
           <p>Cairo, Egypt - January 23-24, 2025</p>
         </div>
-  
+
         <!-- Event Card 3 -->
         <div class="event-card">
           <img src="assets/event8.jpg" alt="4th International Congress of the Asian Oncology Society">
           <h4>4th International Congress of the Asian Oncology Society</h4>
           <p>Xi’an, China - November 14-17, 2024</p>
         </div>
-  
+
         <!-- Event Card 4 -->
         <div class="event-card">
           <img src="assets/event9.jpg" alt="The White House Global Cancer Fund Discussion">
           <h4>The White House Global Cancer Fund Discussion</h4>
           <p>Washington, DC, USA - October 25, 2024</p>
         </div>
-  
+
         <!-- Event Card 5 -->
         <div class="event-card">
           <img src="assets/event10.jpg" alt="ICPC Launches at UN Headquarters">
           <h4>ICPC Launches at UN Headquarters</h4>
           <p>New York City, USA - September 25, 2024</p>
         </div>
-  
+
         <!-- Event Card 6 -->
         <div class="event-card">
           <img src="assets/event11.jpg" alt="Global Cancer Experts Convene in Geneva">
           <h4>Global Cancer Experts Convene in Geneva</h4>
           <p>Geneva, Switzerland - September 19, 2024</p>
         </div>
-  
+
         <!-- Event Card 7 -->
         <div class="event-card">
           <img src="assets/event12.jpg" alt="Healthcare Innovation Summit in Barcelona">
@@ -294,13 +281,13 @@
         </div>
       </div>
     </section>
-  
+
   </div>
-  
 
-<!--Footer-->
 
-<!-- <footer class="site-footer">
+  <!--Footer-->
+
+  <!-- <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-section">
         <h3>CancerIndia</h3>
@@ -333,25 +320,25 @@
   <script>
     // Reveal elements on scroll
     const faders = document.querySelectorAll('.fade-in');
-  
+
     const appearOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -50px 0px"
     };
-  
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add("visible");
         observer.unobserve(entry.target);
       });
     }, appearOptions);
-  
+
     faders.forEach(fader => {
       appearOnScroll.observe(fader);
     });
   </script>
-  
-</body>
-</html>
 
+</body>
+
+</html>
