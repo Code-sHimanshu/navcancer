@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions to Ask - ICPC</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <!-- 🔵 HEADER SECTION -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="https://shuats.edu.in/">
+                <img src="../assets/shuatslogo.jpg" alt="SHUATS Logo" class="logo" />
+            </a>
+        </div>
+        <div class="header-right"></div>
+        <h1>International Cancer Patient Coalition</h1>
+        <div class="header-right"></div>
+        <div class="header-left">
+            <a href='/'>
+                <img src="../assets/logo.jpg" alt="ICPC Logo" class="logo" />
+            </a>
+        </div>
+    </header>
+
+
+
+    <!-- 🧭 NAVIGATION BAR -->
+    <nav class="navbar">
+      <ul class="nav-list">
+        <!-- HOME -->
+        <li class="nav-item">
+          <a class='nav-title' href='/'>Home</a>
+        </li>
+
+        <!-- KNOW ABOUT CANCER -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+            <span class="nav-title">About Us<span class="arrow">▼</span></span>
+            <div class="dropdown" id="cancer-dropdown">
+              <ul class="dropdown-list" id="cancer-options">
+                <li><a class='dropdown-item' href='/about'>History</a></li>
+                <li><a class='dropdown-item' href='/profile'>Profile</a></li>
+                <li><a class='dropdown-item' href='/faq'>FAQs</a></li>
+                <li><a class='dropdown-item' href='/board'>Administration</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- SERVICES OFFERED -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+            <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+            <div class="dropdown" id="faicilities-dropdown">
+              <ul class="dropdown-list" id="faicilities-options">
+                <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
+                <a class='dropdown-item' href='/esr'>Connect with experts</a>
+                <a class='dropdown-item' href='/esr'>Research & Development</a>
+                <a href="#" class="dropdown-item">Government Schemes</a>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- Events -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+            <span class="nav-title">Events<span class="arrow">▼</span></span>
+            <div class="dropdown" id="events-dropdown">
+              <ul class="dropdown-list" id="events-options">
+                <li><a class='dropdown-item' href='/events'>All Events</a></li>
+                <li><a class='dropdown-item' href='/gallery'>Gallery</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- External Links -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+            <span class="nav-title">External Links<span class="arrow">▼</span></span>
+            <div class="dropdown" id="main-dropdown">
+              <ul class="dropdown-list" id="main-options">
+                <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
+                <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
+                <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
+                <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
+                <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
+                <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
+                <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
+                <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="../tailored-information/tailored-info-options-details.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Options
+        </a>
+    </div>
+
+    <main class="esr-main">
+        <section class="stage-selection">
+            <h2 class="services-title">Questions and Resources</h2>
+            <div class="stage-cards-container">
+                <!-- Questions Card -->
+                <div class="stage-card early-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Questions to Ask Your Doctor</h3>
+                    <p>
+                        Essential questions to discuss with your healthcare team about diagnosis, treatment, and follow-up care.
+                    </p>
+                    <a href="questions-category.html" class="stage-btn">View Questions</a>
+                </div>
+
+                <!-- Resources Card -->
+                <div class="stage-card during-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-book-medical"></i>
+                    </div>
+                    <h3>Resources</h3>
+                    <p>
+                        Access trusted organizations, support networks, and information sources for cancer patients and caregivers.
+                    </p>
+                    <a href="resources.html" class="stage-btn">View Resources</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="esr-hero">
+            <div class="esr-hero-content">
+                <h1 class="esr-title">"Knowledge is Power"</h1>
+                <p class="esr-subtitle">
+                    Be prepared with the right questions and resources for your cancer journey
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="../scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+    "risk": [
+        "What is my risk for developing lung cancer?",
+        "Based on my risk factors, when should I start lung cancer screening and how long should it be continued?",
+        "Does risk increase with age?",
+        "If I currently smoke, how do you suggest I quit and what resources are available for counseling?",
+        "How can I reduce my risk of developing lung cancer?"
+    ],
+    "insurance": [
+        "Will my insurance pay for each lung cancer screening test you recommend?",
+        "Is there a copay for screening tests? How much?",
+        "Do I have the insurance requirements to have lung cancer screening tests?",
+        "Do I need an order before each screening test?",
+        "Do I need to see a specialist to prescribe the screening test?",
+        "Is this doctor or testing center in my network?"
+    ],
+    "screening": [
+        "Should I be screened for lung cancer?",
+        "What screening plan do you recommend for me? Why?",
+        "What are the benefits and risks of this screening plan?",
+        "Do you use LDCT for screening?",
+        "Where can I find a testing site?",
+        "Do you have a team of experts who are dedicated to lung cancer screening?",
+        "Does the team of experts include a pulmonologist, thoracic surgeon, and thoracic radiologist?",
+        "What do I have to do to prepare for this screening test?",
+        "How long will this screening test take?",
+        "How often will I have screening tests?"
+    ],
+    "test_results": [
+        "When will I know the test results and who will explain them to me?",
+        "How can I get a copy of the pathology report and other test results?",
+        "What type of nodule(s) do I have? What does this mean?",
+        "Do I need more tests?",
+        "How long until my next test?"
+    ],
+    "biopsies": [
+        "Do I need a biopsy? What type of biopsy will I have?",
+        "What are the risks with this type of biopsy?",
+        "Who will perform the biopsy?",
+        "What will you do to make me comfortable during the biopsy?",
+        "When and where will the biopsy be done?",
+        "How many of these types of biopsies are done at this hospital every year?",
+        "How will my biopsy be performed?",
+        "What else might be done during the biopsy?",
+        "How will I feel after the biopsy?",
+        "How do I find out the biopsy results and who will discuss them with me?"
+    ]
+}

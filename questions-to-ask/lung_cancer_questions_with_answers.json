@@ -1,0 +1,156 @@
+{
+    "risk": [
+        {
+            "question": "What is my risk for developing lung cancer?",
+            "answer": "Your risk depends on several factors including smoking history, exposure to secondhand smoke, radon gas, asbestos, and family history. Smoking is the biggest risk factor."
+        },
+        {
+            "question": "Based on my risk factors, when should I start lung cancer screening and how long should it be continued?",
+            "answer": "Screening is recommended for adults aged 50 to 80 years who have a 20 pack-year smoking history and currently smoke or have quit within the past 15 years. It should be continued annually until the individual has not smoked for 15 years or develops a condition that limits life expectancy or the ability to have curative lung surgery."
+        },
+        {
+            "question": "Does risk increase with age?",
+            "answer": "Yes, the risk of lung cancer increases with age, with most diagnoses occurring in people aged 65 and older."
+        },
+        {
+            "question": "If I currently smoke, how do you suggest I quit and what resources are available for counseling?",
+            "answer": "To quit smoking, you can use a combination of counseling, nicotine replacement therapy (like patches or gum), and medications like varenicline or bupropion. Free resources include 1-800-QUIT-NOW and smokefree.gov."
+        },
+        {
+            "question": "How can I reduce my risk of developing lung cancer?",
+            "answer": "Avoid smoking, minimize exposure to secondhand smoke and carcinogens like radon and asbestos, maintain a healthy diet, and exercise regularly."
+        }
+    ],
+    "insurance": [
+        {
+            "question": "Will my insurance pay for each lung cancer screening test you recommend?",
+            "answer": "Most insurance plans, including Medicare, cover annual lung cancer screening with LDCT for eligible individuals without a copay, due to preventive care provisions under the Affordable Care Act."
+        },
+        {
+            "question": "Is there a copay for screening tests? How much?",
+            "answer": "For most eligible individuals, there is no copay due to preventive service coverage, but this can vary by plan. It's best to check directly with your provider."
+        },
+        {
+            "question": "Do I have the insurance requirements to have lung cancer screening tests?",
+            "answer": "Requirements typically include age range, smoking history, and a physician\u2019s referral. Your provider can confirm eligibility."
+        },
+        {
+            "question": "Do I need an order before each screening test?",
+            "answer": "Yes, a doctor\u2019s order is usually required for lung cancer screening."
+        },
+        {
+            "question": "Do I need to see a specialist to prescribe the screening test?",
+            "answer": "No, a primary care physician can order the screening if you meet the criteria."
+        },
+        {
+            "question": "Is this doctor or testing center in my network?",
+            "answer": "You should confirm with your insurance provider to ensure the doctor and center are in-network to avoid unexpected costs."
+        }
+    ],
+    "screening": [
+        {
+            "question": "Should I be screened for lung cancer?",
+            "answer": "If you are aged 50\u201380, have a 20 pack-year smoking history, and currently smoke or quit within the last 15 years, you should be screened annually with LDCT."
+        },
+        {
+            "question": "What screening plan do you recommend for me? Why?",
+            "answer": "Your screening plan depends on your risk profile. Annual LDCT scans are generally recommended for high-risk individuals to detect cancer early."
+        },
+        {
+            "question": "What are the benefits and risks of this screening plan?",
+            "answer": "Benefits include early detection and better survival rates. Risks include false positives, radiation exposure, and potential anxiety or complications from follow-up procedures."
+        },
+        {
+            "question": "Do you use LDCT for screening?",
+            "answer": "Yes, LDCT (Low-Dose Computed Tomography) is the preferred method for lung cancer screening."
+        },
+        {
+            "question": "Where can I find a testing site?",
+            "answer": "You can ask your doctor or search for accredited screening centers on the American College of Radiology\u2019s Lung Cancer Screening Registry."
+        },
+        {
+            "question": "Do you have a team of experts who are dedicated to lung cancer screening?",
+            "answer": "Accredited centers typically have a team including radiologists, pulmonologists, and oncologists dedicated to lung cancer screening."
+        },
+        {
+            "question": "Does the team of experts include a pulmonologist, thoracic surgeon, and thoracic radiologist?",
+            "answer": "Yes, comprehensive screening teams include these specialists for accurate diagnosis and treatment planning."
+        },
+        {
+            "question": "What do I have to do to prepare for this screening test?",
+            "answer": "No special preparation is needed for LDCT, but you should follow your doctor\u2019s instructions and wear loose, comfortable clothing."
+        },
+        {
+            "question": "How long will this screening test take?",
+            "answer": "The LDCT scan itself takes only a few minutes, but the total visit may last about 30 minutes."
+        },
+        {
+            "question": "How often will I have screening tests?",
+            "answer": "If you're eligible, you should have an LDCT scan annually."
+        }
+    ],
+    "test_results": [
+        {
+            "question": "When will I know the test results and who will explain them to me?",
+            "answer": "Results are usually available within a few days. Your doctor or a lung specialist will explain them to you."
+        },
+        {
+            "question": "How can I get a copy of the pathology report and other test results?",
+            "answer": "You can request a copy through your patient portal or medical records department at the healthcare facility."
+        },
+        {
+            "question": "What type of nodule(s) do I have? What does this mean?",
+            "answer": "Lung nodules can be benign or malignant. Their size, shape, and growth rate help determine the risk. Your doctor will explain the findings."
+        },
+        {
+            "question": "Do I need more tests?",
+            "answer": "If a suspicious nodule is found, your doctor may recommend follow-up imaging or a biopsy."
+        },
+        {
+            "question": "How long until my next test?",
+            "answer": "This depends on your results. If normal, another test is due in one year; otherwise, your doctor will advise a follow-up schedule."
+        }
+    ],
+    "biopsies": [
+        {
+            "question": "Do I need a biopsy? What type of biopsy will I have?",
+            "answer": "If imaging shows a suspicious area, a biopsy may be needed. Types include needle biopsy, bronchoscopy, or surgical biopsy."
+        },
+        {
+            "question": "What are the risks with this type of biopsy?",
+            "answer": "Risks include bleeding, infection, and lung collapse (pneumothorax), but complications are relatively rare."
+        },
+        {
+            "question": "Who will perform the biopsy?",
+            "answer": "A pulmonologist, interventional radiologist, or thoracic surgeon typically performs the procedure."
+        },
+        {
+            "question": "What will you do to make me comfortable during the biopsy?",
+            "answer": "Local anesthesia and sometimes sedation are used to ensure comfort. You may also receive post-procedure pain management."
+        },
+        {
+            "question": "When and where will the biopsy be done?",
+            "answer": "It is usually scheduled at a hospital or outpatient center depending on the type. Your care team will provide details."
+        },
+        {
+            "question": "How many of these types of biopsies are done at this hospital every year?",
+            "answer": "You can ask the hospital directly. High-volume centers typically have more experience and better outcomes."
+        },
+        {
+            "question": "How will my biopsy be performed?",
+            "answer": "Depending on the method, it may involve a needle guided by CT scan, a bronchoscopy, or minor surgery."
+        },
+        {
+            "question": "What else might be done during the biopsy?",
+            "answer": "Additional samples may be taken for genetic or molecular testing if cancer is suspected."
+        },
+        {
+            "question": "How will I feel after the biopsy?",
+            "answer": "You may feel mild pain or discomfort. Most people recover within a day or two, but follow post-procedure advice."
+        },
+        {
+            "question": "How do I find out the biopsy results and who will discuss them with me?",
+            "answer": "Your doctor or specialist will contact you to explain the results, typically within a few days."
+        }
+    ]
+}

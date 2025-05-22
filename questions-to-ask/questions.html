@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions - ICPC</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        .questions-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .category-title {
+            color: #072ACB;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #FCF300;
+        }
+
+        .question-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .question-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .question-header {
+            padding: 20px 25px;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .question-header.active {
+            border-radius: 12px 12px 0 0;
+            background: #f8f9fa;
+            color: #072ACB;
+        }
+
+        .question-header:hover {
+            background: #f8f9fa;
+        }
+
+        .question-text {
+            flex: 1;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-right: 20px;
+            line-height: 1.4;
+        }
+
+        .question-header i {
+            transition: transform 0.3s ease;
+            color: #072ACB;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .question-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            text-align: left;
+            background: #f8f9fa;
+            border-radius: 0 0 12px 12px;
+            opacity: 0;
+        }
+
+        .answer.show {
+            padding: 20px 25px;
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .answer p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .no-questions {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 1.2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Category indicator */
+        .category-indicator {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .category-indicator span {
+            color: #072ACB;
+            font-weight: 500;
+        }
+
+        /* Question counter */
+        .question-count {
+            text-align: center;
+            margin: 20px 0 40px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 🔵 HEADER SECTION -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="https://shuats.edu.in/">
+                <img src="../assets/shuatslogo.jpg" alt="SHUATS Logo" class="logo" />
+            </a>
+        </div>
+        <div class="header-right"></div>
+        <h1>International Cancer Patient Coalition</h1>
+        <div class="header-right"></div>
+        <div class="header-left">
+            <a href='/'>
+                <img src="../assets/logo.jpg" alt="ICPC Logo" class="logo" />
+            </a>
+        </div>
+    </header>
+
+
+    <!-- 🧭 NAVIGATION BAR -->
+    <nav class="navbar">
+      <ul class="nav-list">
+        <!-- HOME -->
+        <li class="nav-item">
+          <a class='nav-title' href='/'>Home</a>
+        </li>
+
+        <!-- KNOW ABOUT CANCER -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+            <span class="nav-title">About Us<span class="arrow">▼</span></span>
+            <div class="dropdown" id="cancer-dropdown">
+              <ul class="dropdown-list" id="cancer-options">
+                <li><a class='dropdown-item' href='/about'>History</a></li>
+                <li><a class='dropdown-item' href='/profile'>Profile</a></li>
+                <li><a class='dropdown-item' href='/faq'>FAQs</a></li>
+                <li><a class='dropdown-item' href='/board'>Administration</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- SERVICES OFFERED -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+            <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+            <div class="dropdown" id="faicilities-dropdown">
+              <ul class="dropdown-list" id="faicilities-options">
+                <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
+                <a class='dropdown-item' href='/esr'>Connect with experts</a>
+                <a class='dropdown-item' href='/esr'>Research & Development</a>
+                <a href="#" class="dropdown-item">Government Schemes</a>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- Events -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+            <span class="nav-title">Events<span class="arrow">▼</span></span>
+            <div class="dropdown" id="events-dropdown">
+              <ul class="dropdown-list" id="events-options">
+                <li><a class='dropdown-item' href='/events'>All Events</a></li>
+                <li><a class='dropdown-item' href='/gallery'>Gallery</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- External Links -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+            <span class="nav-title">External Links<span class="arrow">▼</span></span>
+            <div class="dropdown" id="main-dropdown">
+              <ul class="dropdown-list" id="main-options">
+                <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
+                <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
+                <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
+                <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
+                <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
+                <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
+                <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
+                <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="questions-category.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Categories
+        </a>
+    </div>
+
+    <main class="esr-main">
+        <section class="stage-selection">
+            <h2 class="category-title" id="categoryTitle">Loading Questions...</h2>
+            
+            <!-- Added category indicator -->
+            <div class="category-indicator">
+                Category: <span id="categoryType">Loading...</span>
+            </div>
+
+            <!-- Added question counter -->
+            <div class="question-count" id="questionCount"></div>
+            
+            <div class="questions-container" id="questionsContainer">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        async function loadQuestions() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const category = urlParams.get('category');
+                
+                const response = await fetch('lung_cancer_questions_with_answers.json');
+                const data = await response.json();
+                
+                const categoryTitle = document.getElementById('categoryTitle');
+                const container = document.getElementById('questionsContainer');
+                
+                // Format category name for display
+                const formattedCategory = category
+                    .split('_')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+                
+                categoryTitle.textContent = `${formattedCategory} Questions`;
+                
+                if (data[category]) {
+                    // Update question counter
+                    document.getElementById('questionCount').textContent = 
+                        `${data[category].length} questions available`;
+                    
+                    // Update category type
+                    document.getElementById('categoryType').textContent = 
+                        formattedCategory;
+                    
+                    data[category].forEach((item, index) => {
+                        const questionItem = document.createElement('div');
+                        questionItem.className = 'question-item';
+                        questionItem.innerHTML = `
+                            <div class="question-header" onclick="toggleAnswer(${index})">
+                                <div class="question-text">${item.question}</div>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="answer" id="answer-${index}">
+                                <p>${item.answer}</p>
+                            </div>
+                        `;
+                        container.appendChild(questionItem);
+                    });
+                } else {
+                    container.innerHTML = `
+                        <div class="no-questions">
+                            No questions available for this category.
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                document.getElementById('questionsContainer').innerHTML = `
+                    <div class="no-questions">
+                        Error loading questions. Please try again later.
+                    </div>
+                `;
+            }
+        }
+
+        function toggleAnswer(index) {
+            const answer = document.getElementById(`answer-${index}`);
+            const header = answer.previousElementSibling;
+            const allAnswers = document.querySelectorAll('.answer');
+            const allHeaders = document.querySelectorAll('.question-header');
+            
+            // Close all other answers
+            allAnswers.forEach((item, i) => {
+                if (i !== index) {
+                    item.classList.remove('show');
+                    allHeaders[i].classList.remove('active');
+                }
+            });
+            
+            // Toggle current answer
+            answer.classList.toggle('show');
+            header.classList.toggle('active');
+        }
+
+        window.onload = loadQuestions;
+    </script>
+</body>
+</html>

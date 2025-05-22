@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions Categories - ICPC</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <!-- 🔵 HEADER SECTION -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="https://shuats.edu.in/">
+                <img src="../assets/shuatslogo.jpg" alt="SHUATS Logo" class="logo" />
+            </a>
+        </div>
+        <div class="header-right"></div>
+        <h1>International Cancer Patient Coalition</h1>
+        <div class="header-right"></div>
+        <div class="header-left">
+            <a href='/'>
+                <img src="../assets/logo.jpg" alt="ICPC Logo" class="logo" />
+            </a>
+        </div>
+    </header>
+
+
+    <!-- 🧭 NAVIGATION BAR -->
+    <nav class="navbar">
+      <ul class="nav-list">
+        <!-- HOME -->
+        <li class="nav-item">
+          <a class='nav-title' href='/'>Home</a>
+        </li>
+
+        <!-- KNOW ABOUT CANCER -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+            <span class="nav-title">About Us<span class="arrow">▼</span></span>
+            <div class="dropdown" id="cancer-dropdown">
+              <ul class="dropdown-list" id="cancer-options">
+                <li><a class='dropdown-item' href='/about'>History</a></li>
+                <li><a class='dropdown-item' href='/profile'>Profile</a></li>
+                <li><a class='dropdown-item' href='/faq'>FAQs</a></li>
+                <li><a class='dropdown-item' href='/board'>Administration</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- SERVICES OFFERED -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+            <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+            <div class="dropdown" id="faicilities-dropdown">
+              <ul class="dropdown-list" id="faicilities-options">
+                <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
+                <a class='dropdown-item' href='/esr'>Connect with experts</a>
+                <a class='dropdown-item' href='/esr'>Research & Development</a>
+                <a href="#" class="dropdown-item">Government Schemes</a>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- Events -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+            <span class="nav-title">Events<span class="arrow">▼</span></span>
+            <div class="dropdown" id="events-dropdown">
+              <ul class="dropdown-list" id="events-options">
+                <li><a class='dropdown-item' href='/events'>All Events</a></li>
+                <li><a class='dropdown-item' href='/gallery'>Gallery</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- External Links -->
+        <li class="nav-item has-dropdown">
+          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+            <span class="nav-title">External Links<span class="arrow">▼</span></span>
+            <div class="dropdown" id="main-dropdown">
+              <ul class="dropdown-list" id="main-options">
+                <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
+                <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
+                <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
+                <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
+                <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
+                <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
+                <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
+                <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="questions-to-ask.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Questions
+        </a>
+    </div>
+
+    <main class="esr-main">
+        <!-- Information Section -->
+        <div class="info-section">
+            <h2 class="section-title">Questions to Ask Your Healthcare Provider</h2>
+            <div class="info-card-wrapper">
+                <div class="info-text-card">
+                    <div class="info-text-content">
+                        <p class="emphasis-text">In shared decision-making, you and your health care provider (HCP) discuss your risk for developing lung cancer and agree to a screening schedule. This chapter offers possible questions to ask your HCP.</p>
+                        
+                        <h3>Questions to Ask</h3>
+                        <p>It is important to learn all you can about screening so you can be informed and engage in shared decision-making with your health care provider (HCP). Write down questions before each visit to ask your HCP, take notes, and repeat back what answers you hear.</p>
+                        
+                        <p>If possible, bring someone with you to appointments who can take notes and ask questions. The following questions are suggestions to learn more about lung cancer screening risks and benefits. Feel free to use these questions or come up with your own questions for your HCP.</p>
+                        
+                        <div class="info-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>Family health information can change. Share with your health care provider any changes to your health or family history.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Categories Section -->
+        <section class="stage-selection">
+            <h2 class="services-title">Question Categories</h2>
+            <div class="stage-cards-container">
+                <!-- Risk Assessment Card -->
+                <div class="stage-card early-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Risk Assessment</h3>
+                    <p>Questions about personal risk factors, family history, and risk evaluation.</p>
+                    <a href="questions.html?category=risk" class="stage-btn">View Questions</a>
+                </div>
+
+                <!-- Insurance Card -->
+                <div class="stage-card during-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Insurance & Coverage</h3>
+                    <p>Questions about insurance coverage, costs, and financial assistance.</p>
+                    <a href="questions.html?category=insurance" class="stage-btn">View Questions</a>
+                </div>
+
+                <!-- Screening Card -->
+                <div class="stage-card after-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Screening Process</h3>
+                    <p>Questions about screening procedures, frequency, and preparation.</p>
+                    <a href="questions.html?category=screening" class="stage-btn">View Questions</a>
+                </div>
+
+                <!-- Test Results Card -->
+                <div class="stage-card after-stage2">
+                    <div class="stage-icon">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
+                    <h3>Test Results</h3>
+                    <p>Questions about understanding test results and next steps.</p>
+                    <a href="questions.html?category=test_results" class="stage-btn">View Questions</a>
+                </div>
+
+                <!-- Biopsy Card -->
+                <div class="stage-card early-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3>Biopsy</h3>
+                    <p>Questions about biopsy procedures, risks, and recovery.</p>
+                    <a href="questions.html?category=biopsies" class="stage-btn">View Questions</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        /* Elegant Info Section Styling */
+        .info-section {
+            margin: 40px auto;
+            padding: 30px;
+            max-width: 1000px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            opacity: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            color: #072ACB;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-card-wrapper {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .info-text-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .info-text-content {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .emphasis-text {
+            font-size: 1.1rem;
+            color: #072ACB;
+            border-left: 4px solid #072ACB;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-text-content h3 {
+            color: #072ACB;
+            margin: 20px 0 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-tip:hover {
+            transform: translateX(10px);
+        }
+
+        .info-tip i {
+            color: #ffc107;
+            font-size: 24px;
+            margin-top: 2px;
+        }
+
+        .info-tip p {
+            margin: 0;
+            color: #664d03;
+        }
+
+        /* Animation for section appearance */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-section {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+
+    <script>
+        // Scroll reveal animation
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimation() {
+            const section = document.querySelector('.scroll-reveal');
+            if (isElementInViewport(section)) {
+                section.classList.add('visible');
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+    </script>
+
+    <script src="../scripts.js"></script>
+</body>
+</html>
