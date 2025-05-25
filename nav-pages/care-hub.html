@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Hub - Lung Cancer Prediction System</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="../chatbot.js" defer></script>
+</head>
+<body>
+  <!-- 🔵 HEADER SECTION -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="https://shuats.edu.in/">
+        <img src="../assets/shuatslogo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
+    </div>
+
+    <div class="header-right"></div>
+
+    <h1>International Cancer Patient Coalition</h1>
+    <div class="header-right"></div>
+    <div class="header-left">
+      <a href="./index.html">
+        <img src="../assets/logo.jpg" alt="India Against Cancer" class="logo" />
+      </a>
+    </div>
+    </div>
+  </header>
+
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="/index.html" class="nav-title">Home</a>
+      </li>
+
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="/about.html" class="dropdown-item">History</a></li>
+              <li>
+                <a href="/profile.html" class="dropdown-item">Profile</a>
+              </li>
+              <li><a href="./questions-to-ask/questions-category.html" class="dropdown-item">FAQs</a></li>
+              <li>
+                <a href="/board.html" class="dropdown-item">Administration</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+      <!-- SERVICES OFFERED -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+          <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+          <div class="dropdown" id="faicilities-dropdown">
+            <ul class="dropdown-list" id="faicilities-options">
+              <a href="care-hub.html" class="dropdown-item">Care Hub</a>
+              <a href="#" class="dropdown-item">Research and Innovation Hub</a>
+              <a href="./information-and-facility-hub.html" class="dropdown-item">Information and Facility Hub</a>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+      <!-- OTHER STATIC LINKS -->
+
+      <!-- Events -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+          <span class="nav-title">Events<span class="arrow">▼</span></span>
+          <div class="dropdown" id="events-dropdown">
+            <ul class="dropdown-list" id="events-options">
+              <li>
+                <a href="/events.html" class="dropdown-item">All Events</a>
+              </li>
+              <li>
+                <a href="/gallery.html" class="dropdown-item">Gallery</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+      <!-- main website -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">External Links<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li>
+                <a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+    <main class="esr-main">
+        <section class="stage-selection">
+            <h2 class="services-title">Care Hub Services</h2>
+            <div class="stage-cards-container">
+                <!-- Human Interface Card -->
+                <div class="stage-card early-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Human Interface</h3>
+                    <p>Connect with our healthcare professionals for personalized guidance and support.</p>
+                    <a href="#" class="stage-btn">Connect Now</a>
+                </div>
+
+                <!-- Virtual Assistant Card -->
+                <div class="stage-card during-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Virtual Assistant & Chatbot</h3>
+                    <p>Get immediate assistance from our AI-powered virtual assistant.</p>
+                    <button class="stage-btn" onclick="document.querySelector('.chatbot-toggle').click()">Chat Now</button>
+                </div>
+
+                <!-- AI Diagnostic Tool Card -->
+                <div class="stage-card after-stage">
+                    <div class="stage-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>AI Diagnostic Tool</h3>
+                    <p>Use our advanced AI-powered diagnostic tool for lung cancer screening.</p>
+                    <a href="https://lungscan-ai.streamlit.app" target="_blank" class="stage-btn">Start Diagnosis</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>
