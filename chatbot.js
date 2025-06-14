@@ -2,11 +2,11 @@
 const chatbotConfig = {
     welcomeMessage: "Hello! I'm your navigation assistant. How can I help you today?",
     suggestions: [
-        "Show me the main pages",
+        "Main pages",
         "AI-based prediction",
-        "Show me external links",
+        "External links",
         "Find cancer centers",
-        "Show me questions to ask"
+        "Questions to ask"
     ],
     aiPredictionKeywords: ["ai", "prediction", "tool", "diagnosis", "predict", "forecast", "analyze", "analysis"]
 };
@@ -293,6 +293,12 @@ class Chatbot {
         this.voiceInputButton = document.getElementById('chatbot-voice-input');
         this.fileInput = document.getElementById('chatbot-file-input');
         this.isRecording = false;
+        this.mediaRecorder = null;
+        this.audioChunks = [];
+        this.maxRecordingDuration = 60000; // 60 seconds
+        this.recordingTimeout = null;
+        this.recognition = null;
+        this.setupSpeechRecognition();
         
         this.initializeEventListeners();
         this.showWelcomeMessage();
@@ -371,7 +377,9 @@ class Chatbot {
     }
 
     processUserInput(input) {
+        console.log('Processing user input:', input); // Debug log
         const lowerInput = input.toLowerCase();
+        console.log('Lowercased input for processing:', lowerInput); // Debug log
         
         // Check for AI prediction related keywords
         if (chatbotConfig.aiPredictionKeywords.some(keyword => lowerInput.includes(keyword))) {
@@ -385,29 +393,61 @@ class Chatbot {
             return;
         }
 
-        // Define navigation responses and actions
-        const responses = {
-            'show me the main pages': 'Here are the main pages you can visit:\n1. Home (index.html)\n2. Guidelines (guidelines.html)\n3. Lung Cancer Guidelines (lung-cancer-guidelines.html)\n4. Choose Type (choose-type.html)',
-            'where can i find guidelines': 'You can find guidelines in two places:\n1. General Guidelines (guidelines.html)\n2. Specific Lung Cancer Guidelines (lung-cancer-guidelines.html)',
-            'tell me about lung cancer information': 'You can find detailed lung cancer information in the following sections:\n1. Tailored Information (tailored-information/)\n2. Cancer Center Information (cancer-center/)\n3. Questions to Ask (questions-to-ask/)',
-            'what questions should i ask': 'You can find a comprehensive list of questions in the questions-to-ask/ directory. These questions are specifically curated to help you get the most out of your medical consultations.',
-            'take me to services offered': {
-                message: 'Taking you to the Services Offered section...',
-                action: () => {
-                    const servicesDropdown = document.querySelector('.nav-title:contains("Services Offered")');
-                    if (servicesDropdown) {
-                        servicesDropdown.click();
-                    }
+        // Define navigation responses and actions with flexible keywords
+        const responses = [
+            {
+                keywords: ['show', 'main', 'pages', 'home', 'homepage', 'start'],
+                response: 'Here are the main pages you can visit:\n1. Home (index.html)\n2. Guidelines (guidelines.html)\n3. Lung Cancer Guidelines (lung-cancer-guidelines.html)\n4. Choose Type (choose-type.html)',
+                matchType: 'every'
+            },
+            {
+                keywords: ['about', 'us', 'history', 'who', 'we', 'are', 'company', 'organization'],
+                response: 'You can find information about our history on the About Us page: <a href="/about.html" target="_blank">About Us - History</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['profile', 'our', 'profile', 'view', 'profile'],
+                response: 'You can view our organization\'s profile here: <a href="/profile.html" target="_blank">Our Profile</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['faqs', 'frequently', 'asked', 'questions', 'common', 'questions'],
+                response: 'For frequently asked questions, please visit our FAQs section: <a href="./questions-to-ask/questions-category.html" target="_blank">FAQs</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['administration', 'board', 'team', 'management', 'leaders', 'admin'],
+                response: 'Information about our administration and board members can be found here: <a href="/board.html" target="_blank">Administration Board</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['services', 'offered', 'offer', 'show'], // Simplified keywords for some matching
+                matchType: 'some', // Use 'some' for flexible matching
+                action: (input) => {
+                    const servicesButtons = `
+                        <div class="chatbot-buttons-container">
+                            ${this.createButton('AI-based Prediction Tool', 'ai-prediction.html')}
+                            ${this.createButton('Find Cancer Centers', './cancer-center/cancer-certer-form.html')}
+                            ${this.createButton('View All Cancer Centers', './cancer-center/show-cancer-centers.html')}
+                            ${this.createButton('Explore External Links', '#')}
+                            ${this.createButton('Questions to Ask', './questions-to-ask/questions.html')}
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        this.addMessage('Here are some of the services and key sections available:', 'bot');
+                        this.addMessage(servicesButtons, 'bot');
+                    }, 500);
                 }
             },
-            'ai-based prediction': {
-                message: 'Taking you to the AI-based prediction tool...',
+            {
+                keywords: ['ai-based', 'prediction', 'ai', 'prediction', 'tool', 'diagnosis', 'predict', 'forecast', 'analyze', 'analysis'],
                 action: () => {
                     window.open('https://lungscan-ai.streamlit.app/', '_blank');
-                }
+                },
+                matchType: 'every'
             },
-            'show me external links': {
-                message: 'Here are the external links available:',
+            {
+                keywords: ['external', 'links'],
                 action: () => {
                     const externalLinksButtons = `
                         <div class="chatbot-buttons-container">
@@ -422,12 +462,14 @@ class Chatbot {
                         </div>
                     `;
                     setTimeout(() => {
+                        this.addMessage('Here are the external links available:', 'bot');
                         this.addMessage(externalLinksButtons, 'bot');
                     }, 500);
-                }
+                },
+                matchType: 'every'
             },
-            'find cancer centers': {
-                message: 'I can help you find cancer centers. Here are your options:',
+            {
+                keywords: ['find', 'cancer', 'centers', 'hospital', 'database', 'hospitals', 'hospital', 'info', 'hospital', 'information'],
                 action: () => {
                     const cancerCenterButtons = `
                         <div class="chatbot-buttons-container">
@@ -447,12 +489,14 @@ class Chatbot {
                         </p>
                     `;
                     setTimeout(() => {
+                        this.addMessage('I can help you find cancer centers. Here are your options:', 'bot');
                         this.addMessage(cancerCenterButtons, 'bot');
                     }, 500);
-                }
+                },
+                matchType: 'every'
             },
-            'show me questions to ask': {
-                message: 'Here are the different categories of questions you can ask your healthcare provider:',
+            {
+                keywords: ['show', 'questions', 'ask', 'questions'],
                 action: () => {
                     const questionsButtons = `
                         <div class="chatbot-buttons-container">
@@ -462,48 +506,105 @@ class Chatbot {
                             These questions are designed to help you:
                             <br>• Understand your risk factors
                             <br>• Learn about insurance coverage
-                            <br>• Prepare for screening procedures
-                            <br>• Understand test results
-                            <br>• Know what to expect from biopsies
-                            <br><br>
-                            Tips for using these questions:
-                            <br>• Write down questions before your visit
-                            <br>• Take notes during the appointment
-                            <br>• Bring someone to help take notes
-                            <br>• Ask for clarification when needed
                         </p>
                     `;
                     setTimeout(() => {
+                        this.addMessage('Here are the different categories of questions you can ask your healthcare provider:', 'bot');
                         this.addMessage(questionsButtons, 'bot');
                     }, 500);
-                }
+                },
+                matchType: 'every'
+            },
+            {
+                keywords: ['information', 'facility', 'health', 'services', 'info', 'facilities'],
+                action: () => {
+                    const infoServicesButtons = `
+                        <p style="margin-top: 10px; font-size: 14px; color: white;">
+                            Information and facility health services can be accessed through the Cancer Centers section.
+                            You can also explore other relevant sections:
+                        </p>
+                        <div class="chatbot-buttons-container">
+                            ${this.createButton('Search Cancer Centers', './cancer-center/cancer-certer-form.html')}
+                            ${this.createButton('View All Cancer Centers', './cancer-center/show-cancer-centers.html')}
+                            ${this.createButton('Explore Main Pages', 'index.html')}
+                            ${this.createButton('Questions to Ask', './questions-to-ask/questions.html')}
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        this.addMessage('Yes, I can help you with information on facilities and health services.', 'bot');
+                        this.addMessage(infoServicesButtons, 'bot');
+                    }, 500);
+                },
+                matchType: 'every'
+            },
+            {
+                keywords: ['care', 'hub', 'carehub', 'patient', 'care'],
+                response: 'Our Care Hub provides various support and resources: <a href="nav-pages/care-hub.html" target="_blank">Care Hub</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['research', 'innovation', 'hub', 'research', 'innovate'],
+                response: 'The Research and Innovation Hub focuses on advancements in cancer care. Please note: This is a placeholder and may not have a dedicated page yet. If you are a developer, please integrate.',
+                matchType: 'every'
+            },
+            {
+                keywords: ['events', 'all', 'events', 'upcoming', 'past', 'webinars', 'event'],
+                response: 'You can find information about all our upcoming and past events here: <a href="/events.html" target="_blank">All Events</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['gallery', 'event', 'photos', 'images', 'pictures', 'media'],
+                response: 'View photos and memories from our past events in the Gallery: <a href="/gallery.html" target="_blank">Gallery</a>',
+                matchType: 'every'
+            },
+            {
+                keywords: ['patients', 'patient', 'info', 'for', 'patients', 'early', 'detection', 'symptoms', 'preventive'],
+                response: 'For patients, we offer vital information on early detection, symptoms, and preventive strategies.',
+                matchType: 'every'
+            },
+            {
+                keywords: ['healthcare', 'professionals', 'doctors', 'medical', 'staff', 'treatment', 'protocols'],
+                response: 'Healthcare professionals can discover comprehensive resources on treatment protocols and patient quality of life.',
+                matchType: 'every'
+            },
+            {
+                keywords: ['industry', 'professionals', 'industry', 'info', 'corporate', 'partners', 'post-treatment'],
+                response: 'Industry professionals can gain insights into post-treatment care and recovery strategies.',
+                matchType: 'every'
+            },
+            {
+                keywords: ['general', 'support', 'others', 'community', 'help', 'recovery', 'follow-up'],
+                response: 'For general support, explore guidance on recovery, follow-up care, and resources for patients and their families.',
+                matchType: 'every'
+            },
+            {
+                keywords: ['contact', 'us', 'get', 'in', 'touch', 'reach', 'us', 'feedback', 'inquiry'],
+                response: 'You can get in touch with us through the Contact Us section on our homepage.',
+                matchType: 'every'
             }
-        };
+        ];
 
-        // Find the best matching response
-        let response = "I'm not sure about that. Could you please rephrase your question?";
-        let action = null;
+        for (const entry of responses) {
+            let match;
+            if (entry.matchType === 'some') {
+                match = entry.keywords.some(keyword => lowerInput.includes(keyword));
+            } else {
+                // Default to 'every' if matchType is not specified or is 'every'
+                match = entry.keywords.every(keyword => lowerInput.includes(keyword));
+            }
 
-        for (const [key, value] of Object.entries(responses)) {
-            if (lowerInput.includes(key)) {
-                if (typeof value === 'object') {
-                    response = value.message;
-                    action = value.action;
-                } else {
-                    response = value;
+            if (match) {
+                if (entry.action) {
+                    entry.action(input);
+                } else if (entry.response) {
+                    this.addMessage(entry.response, 'bot');
                 }
-                break;
+                return;
             }
         }
 
-        // Add a small delay to make it feel more natural
-        setTimeout(() => {
-            this.addMessage(response, 'bot');
-            if (action) {
-                action();
-            }
-            this.showSuggestions();
-        }, 500);
+        // Fallback response if no specific match is found
+        this.addMessage("I\'m not sure about that. Could you please rephrase your question?", 'bot');
     }
 
     clearChat() {
@@ -511,35 +612,93 @@ class Chatbot {
         this.showWelcomeMessage();
     }
 
+    setupSpeechRecognition() {
+        if ('webkitSpeechRecognition' in window) {
+            this.recognition = new webkitSpeechRecognition();
+            this.recognition.continuous = false;
+            this.recognition.interimResults = false;
+            this.recognition.lang = 'en-US';
+
+            this.recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                console.log('Voice input transcript:', transcript); // Debug log
+                this.addMessage(transcript, 'user');
+                this.processUserInput(transcript);
+            };
+
+            this.recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                this.addMessage("Sorry, there was an error with speech recognition. Please try again.", 'bot');
+            };
+
+            this.recognition.onend = () => {
+                this.isRecording = false;
+                this.voiceInputButton.classList.remove('recording-indicator');
+                clearTimeout(this.recordingTimeout);
+            };
+        } else {
+            console.error('Speech recognition not supported in this browser');
+        }
+    }
+
     async toggleVoiceInput() {
         if (!this.isRecording) {
+            if (!this.recognition) {
+                this.addMessage("Sorry, speech recognition is not supported in your browser. Please use a modern browser like Chrome.", 'bot');
+                return;
+            }
+
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const mediaRecorder = new MediaRecorder(stream);
-                const audioChunks = [];
-
-                mediaRecorder.ondataavailable = (event) => {
-                    audioChunks.push(event.data);
-                };
-
-                mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    // Here you would typically send the audio to a speech-to-text service
-                    // For now, we'll just show a placeholder message
-                    this.addMessage("Voice input received. Processing...", 'bot');
-                };
-
-                mediaRecorder.start();
                 this.isRecording = true;
                 this.voiceInputButton.classList.add('recording-indicator');
+                this.recognition.start();
+                
+                // Set maximum recording duration
+                this.recordingTimeout = setTimeout(() => {
+                    if (this.isRecording) {
+                        this.stopRecording();
+                    }
+                }, this.maxRecordingDuration);
+
+                // Add recording duration indicator
+                this.startRecordingDuration();
             } catch (err) {
-                console.error('Error accessing microphone:', err);
-                this.addMessage("Sorry, I couldn't access your microphone.", 'bot');
+                console.error('Error starting speech recognition:', err);
+                this.addMessage("Sorry, I couldn't start speech recognition. Please check your browser permissions.", 'bot');
+                this.isRecording = false;
+                this.voiceInputButton.classList.remove('recording-indicator');
             }
         } else {
+            this.stopRecording();
+        }
+    }
+
+    stopRecording() {
+        if (this.recognition && this.isRecording) {
+            this.recognition.stop();
             this.isRecording = false;
             this.voiceInputButton.classList.remove('recording-indicator');
+            clearTimeout(this.recordingTimeout);
+            this.stopRecordingDuration();
         }
+    }
+
+    startRecordingDuration() {
+        this.recordingStartTime = Date.now();
+        this.updateRecordingDuration();
+    }
+
+    stopRecordingDuration() {
+        clearInterval(this.durationInterval);
+        this.recordingDuration = 0;
+    }
+
+    updateRecordingDuration() {
+        this.durationInterval = setInterval(() => {
+            const duration = Math.floor((Date.now() - this.recordingStartTime) / 1000);
+            this.recordingDuration = duration;
+            this.voiceInputButton.title = `Recording... ${duration}s`;
+        }, 1000);
     }
 
     handleFileUpload(event) {
