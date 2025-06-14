@@ -7,8 +7,7 @@ const chatbotConfig = {
         "Show me external links",
         "Find cancer centers",
         "Show me questions to ask"
-    ],
-    aiPredictionKeywords: ["ai", "prediction", "tool", "diagnosis", "predict", "forecast", "analyze", "analysis"]
+    ]
 };
 
 // Chatbot UI Elements
@@ -16,25 +15,11 @@ const chatbotHTML = `
 <div id="chatbot-container" class="chatbot-container hidden">
     <div id="chatbot-header" class="chatbot-header">
         <span>Navigation Assistant</span>
-        <div class="chatbot-header-buttons">
-            <button id="chatbot-clear" class="chatbot-header-button" title="Clear Chat">
-                <i class="fas fa-trash"></i>
-            </button>
-            <button id="chatbot-minimize" class="chatbot-minimize">−</button>
-        </div>
+        <button id="chatbot-minimize" class="chatbot-minimize">−</button>
     </div>
     <div id="chatbot-messages" class="chatbot-messages"></div>
     <div id="chatbot-suggestions" class="chatbot-suggestions"></div>
     <div class="chatbot-input-container">
-        <div class="chatbot-input-actions">
-            <button id="chatbot-voice-input" class="chatbot-input-button" title="Voice Input">
-                <i class="fas fa-microphone"></i>
-            </button>
-            <label for="chatbot-file-input" class="chatbot-input-button" title="Attach File">
-                <i class="fas fa-paperclip"></i>
-            </label>
-            <input type="file" id="chatbot-file-input" accept=".pdf,.jpg,.jpeg,.png" hidden>
-        </div>
         <input type="text" id="chatbot-input" placeholder="Type your question here...">
         <button id="chatbot-send">Send</button>
     </div>
@@ -204,71 +189,6 @@ const chatbotStyles = `
 .hidden {
     display: none !important;
 }
-
-.chatbot-header-buttons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.chatbot-header-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s ease;
-}
-
-.chatbot-header-button:hover {
-    transform: scale(1.1);
-}
-
-.chatbot-input-actions {
-    display: flex;
-    gap: 5px;
-}
-
-.chatbot-input-button {
-    background: none;
-    border: none;
-    color: rgb(0, 128, 255);
-    font-size: 18px;
-    cursor: pointer;
-    padding: 5px;
-    transition: color 0.2s ease;
-}
-
-.chatbot-input-button:hover {
-    color: rgb(6, 116, 226);
-}
-
-.chatbot-file-preview {
-    max-width: 200px;
-    max-height: 200px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-.chatbot-pdf-preview {
-    width: 100%;
-    height: 200px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.recording-indicator {
-    color: red;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
 `;
 
 // Add styles to document
@@ -289,10 +209,6 @@ class Chatbot {
         this.input = document.getElementById('chatbot-input');
         this.send = document.getElementById('chatbot-send');
         this.suggestions = document.getElementById('chatbot-suggestions');
-        this.clearButton = document.getElementById('chatbot-clear');
-        this.voiceInputButton = document.getElementById('chatbot-voice-input');
-        this.fileInput = document.getElementById('chatbot-file-input');
-        this.isRecording = false;
         
         this.initializeEventListeners();
         this.showWelcomeMessage();
@@ -305,15 +221,6 @@ class Chatbot {
         this.input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.handleUserInput();
         });
-        
-        // Clear chat button
-        this.clearButton.addEventListener('click', () => this.clearChat());
-        
-        // Voice input button
-        this.voiceInputButton.addEventListener('click', () => this.toggleVoiceInput());
-        
-        // File input
-        this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
     }
 
     toggleChatbot() {
@@ -371,20 +278,9 @@ class Chatbot {
     }
 
     processUserInput(input) {
-        const lowerInput = input.toLowerCase();
+        // Convert input to lowercase for easier matching
+        const query = input.toLowerCase();
         
-        // Check for AI prediction related keywords
-        if (chatbotConfig.aiPredictionKeywords.some(keyword => lowerInput.includes(keyword))) {
-            this.addMessage("I can help you with our AI Prediction Tool. Would you like to:", 'bot');
-            this.addMessage(`
-                <div class="chatbot-buttons-container">
-                    <button class="chatbot-nav-button" onclick="window.location.href='ai-prediction.html'">Open AI Prediction Tool</button>
-                    <button class="chatbot-nav-button" onclick="window.location.href='ai-prediction-guide.html'">Learn More About AI Predictions</button>
-                </div>
-            `, 'bot');
-            return;
-        }
-
         // Define navigation responses and actions
         const responses = {
             'show me the main pages': 'Here are the main pages you can visit:\n1. Home (index.html)\n2. Guidelines (guidelines.html)\n3. Lung Cancer Guidelines (lung-cancer-guidelines.html)\n4. Choose Type (choose-type.html)',
@@ -485,7 +381,7 @@ class Chatbot {
         let action = null;
 
         for (const [key, value] of Object.entries(responses)) {
-            if (lowerInput.includes(key)) {
+            if (query.includes(key)) {
                 if (typeof value === 'object') {
                     response = value.message;
                     action = value.action;
@@ -504,72 +400,6 @@ class Chatbot {
             }
             this.showSuggestions();
         }, 500);
-    }
-
-    clearChat() {
-        this.messages.innerHTML = '';
-        this.showWelcomeMessage();
-    }
-
-    async toggleVoiceInput() {
-        if (!this.isRecording) {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const mediaRecorder = new MediaRecorder(stream);
-                const audioChunks = [];
-
-                mediaRecorder.ondataavailable = (event) => {
-                    audioChunks.push(event.data);
-                };
-
-                mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    // Here you would typically send the audio to a speech-to-text service
-                    // For now, we'll just show a placeholder message
-                    this.addMessage("Voice input received. Processing...", 'bot');
-                };
-
-                mediaRecorder.start();
-                this.isRecording = true;
-                this.voiceInputButton.classList.add('recording-indicator');
-            } catch (err) {
-                console.error('Error accessing microphone:', err);
-                this.addMessage("Sorry, I couldn't access your microphone.", 'bot');
-            }
-        } else {
-            this.isRecording = false;
-            this.voiceInputButton.classList.remove('recording-indicator');
-        }
-    }
-
-    handleFileUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            if (file.type === 'application/pdf') {
-                this.addMessage(`
-                    <div class="chatbot-pdf-preview">
-                        <embed src="${e.target.result}" type="application/pdf" width="100%" height="100%">
-                    </div>
-                    <p>PDF file: ${file.name}</p>
-                `, 'user');
-            } else if (file.type.startsWith('image/')) {
-                this.addMessage(`
-                    <img src="${e.target.result}" class="chatbot-file-preview" alt="${file.name}">
-                    <p>Image file: ${file.name}</p>
-                `, 'user');
-            }
-        };
-
-        if (file.type === 'application/pdf') {
-            reader.readAsDataURL(file);
-        } else if (file.type.startsWith('image/')) {
-            reader.readAsDataURL(file);
-        } else {
-            this.addMessage("Sorry, I can only handle PDF and image files.", 'bot');
-        }
     }
 }
 
