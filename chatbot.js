@@ -442,7 +442,7 @@ class Chatbot {
             {
                 keywords: ['ai-based', 'prediction', 'ai', 'prediction', 'tool', 'diagnosis', 'predict', 'forecast', 'analyze', 'analysis'],
                 action: () => {
-                    window.open('https://lungscan-ai.streamlit.app/', '_blank');
+                    window.open('https://navcancer-ai-lungscan.onrender.com/', '_blank');
                 },
                 matchType: 'every'
             },
