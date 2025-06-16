@@ -386,7 +386,7 @@ class Chatbot {
             this.addMessage("I can help you with our AI Prediction Tool. Would you like to:", 'bot');
             this.addMessage(`
                 <div class="chatbot-buttons-container">
-                    <button class="chatbot-nav-button" onclick="window.location.href='ai-prediction.html'">Open AI Prediction Tool</button>
+                    <button class="chatbot-nav-button" onclick="window.location.href='https://navcancer-ai-lungscan.onrender.com/'">Open AI Prediction Tool</button>
                     <button class="chatbot-nav-button" onclick="window.location.href='ai-prediction-guide.html'">Learn More About AI Predictions</button>
                 </div>
             `, 'bot');
