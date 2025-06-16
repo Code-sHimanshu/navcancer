@@ -9,7 +9,8 @@ const chatbotConfig = {
         "AI-based prediction",
         "External links", 
         "Find cancer centers",
-        "Questions to ask"
+        "Questions to ask",
+        "Services Offered"
     ],
     aiPredictionKeywords: ["ai", "prediction", "tool", "diagnosis", "predict", "forecast", "analyze", "analysis"]
 };
