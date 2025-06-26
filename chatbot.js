@@ -1,10 +1,13 @@
 // Chatbot Configuration
 const chatbotConfig = {
-    welcomeMessage: "Hello! I'm your navigation assistant. How can I help you today?",
+    welcomeMessage: "Hello! I'm your navigation assistant. I can help you with:",
     suggestions: [
+        "Care Hub",
+        "Research and Innovation Hub",
+        "Information and Facility Hub",
         "Main pages",
         "AI-based prediction",
-        "External links",
+        "External links", 
         "Find cancer centers",
         "Questions to ask"
     ],
@@ -354,9 +357,20 @@ class Chatbot {
     showSuggestions() {
         this.suggestions.innerHTML = '';
         chatbotConfig.suggestions.forEach(suggestion => {
+            let displayText = suggestion;
+            // स्ट्राइकथ्रू वाले suggestions
+            if ([
+                'Main pages',
+                'AI-based prediction',
+                'External links',
+                'Find cancer centers',
+                'Questions to ask'
+            ].includes(suggestion)) {
+                displayText = `<s>${suggestion}</s>`;
+            }
             const chip = document.createElement('div');
             chip.className = 'suggestion-chip';
-            chip.textContent = suggestion;
+            chip.innerHTML = displayText;
             chip.addEventListener('click', () => this.handleSuggestion(suggestion));
             this.suggestions.appendChild(chip);
         });
@@ -538,14 +552,35 @@ class Chatbot {
                 matchType: 'every'
             },
             {
-                keywords: ['care', 'hub', 'carehub', 'patient', 'care'],
-                response: 'Our Care Hub provides various support and resources: <a href="nav-pages/care-hub.html" target="_blank">Care Hub</a>',
-                matchType: 'every'
+                keywords: ['information and facility hub', 'information facility hub', 'information', 'facility', 'facilities', 'info'],
+                action: () => {
+                    const infoHubButton = `
+                        <div class="chatbot-buttons-container">
+                            <button class="chatbot-nav-button" onclick="window.open('/nav-pages/information-and-facility-hub.html', '_blank')">Go to Information and Facility Hub</button>
+                        </div>
+                    `;
+                    this.addMessage('You can access the Information and Facility Hub for more details. Click below to visit:', 'bot');
+                    this.addMessage(infoHubButton, 'bot');
+                },
+                matchType: 'some'
+            },
+            {
+                keywords: ['care hub', 'carehub', 'patient care'],
+                action: () => {
+                    const careHubButton = `
+                        <div class="chatbot-buttons-container">
+                            <button class="chatbot-nav-button" onclick="window.open('/nav-pages/care-hub.html', '_blank')">Go to Care Hub</button>
+                        </div>
+                    `;
+                    this.addMessage('Our Care Hub provides various support and resources. Click below to visit:', 'bot');
+                    this.addMessage(careHubButton, 'bot');
+                },
+                matchType: 'some'
             },
             {
                 keywords: ['research', 'innovation', 'hub', 'research', 'innovate'],
-                response: 'The Research and Innovation Hub focuses on advancements in cancer care. Please note: This is a placeholder and may not have a dedicated page yet. If you are a developer, please integrate.',
-                matchType: 'every'
+                response: 'The Research and Innovation Hub focuses on advancements in cancer care. (This is a placeholder. If you are a developer, please integrate a dedicated page.)',
+                matchType: 'some'
             },
             {
                 keywords: ['events', 'all', 'events', 'upcoming', 'past', 'webinars', 'event'],
