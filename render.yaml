@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: human-assistant-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn backend.wsgi"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: DEBUG
+        value: False
+      - key: ALLOWED_HOSTS
+        value: your-app-name.onrender.com
+    autoDeploy: true
+    plan: free
+    region: oregon
+    branch: main
+    healthCheckPath: /admin/ 
