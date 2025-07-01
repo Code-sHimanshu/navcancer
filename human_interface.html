@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Interface - NAVCANCER</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Human Interface Modal -->
+    <div id="humanInterfaceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeHumanModal">&times;</span>
+            
+            <!-- Login/Signup Section -->
+            <div id="authSection">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab">Login</button>
+                    <button class="auth-tab" id="signupTab">Sign Up</button>
+                </div>
+                
+                <form id="loginForm" class="form-group active-form">
+                    <input type="email" id="loginEmail" placeholder="Email" required />
+                    <input type="password" id="loginPassword" placeholder="Password" required />
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                
+                <form id="signupForm" class="form-group">
+                    <input type="text" id="signupName" placeholder="Full Name" required />
+                    <input type="email" id="signupEmail" placeholder="Email" required />
+                    <input type="password" id="signupPassword" placeholder="Password" required />
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </form>
+                
+                <p id="authError" class="error-message"></p>
+            </div>
+            
+            <!-- Main Appointment Section -->
+            <div id="mainSection" style="display:none;">
+                <h2>Select an Expert</h2>
+                <div class="experts-list">
+                    <!-- Expert Card 1 -->
+                    <div class="card expert-card">
+                        <img src="assets/expert1.jpg" alt="Prof. (Dr.) I. R. Jonathan Lal" class="expert-photo" />
+                        <div class="expert-info">
+                            <h3>Prof. (Dr.) I. R. Jonathan Lal</h3>
+                            <p class="designation">Senior Oncologist</p>
+                            <p class="specialization">Specialization: Cancer Research</p>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span>(50 reviews)</span>
+                            </div>
+                            <button class="book-btn">Book Appointment</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Expert Card 2 -->
+                    <div class="card expert-card">
+                        <img src="assets/expert2.jpg" alt="Dr. Dennis Horgan" class="expert-photo" />
+                        <div class="expert-info">
+                            <h3>Dr. Dennis Horgan</h3>
+                            <p class="designation">Medical Director</p>
+                            <p class="specialization">Specialization: Personalized Medicine</p>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                <span>(38 reviews)</span>
+                            </div>
+                            <button class="book-btn">Book Appointment</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Expert Card 3 -->
+                    <div class="card expert-card">
+                        <img src="assets/expert3.jpg" alt="Dr. Deepak Lal" class="expert-photo" />
+                        <div class="expert-info">
+                            <h3>Dr. Deepak Lal</h3>
+                            <p class="designation">Consultant Oncologist</p>
+                            <p class="specialization">Specialization: Clinical Oncology</p>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                <span>(27 reviews)</span>
+                            </div>
+                            <button class="book-btn">Book Appointment</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Expert Card 4 -->
+                    <div class="card expert-card">
+                        <img src="assets/expert4.jpg" alt="Dr. Rishabh Chaudhary" class="expert-photo" />
+                        <div class="expert-info">
+                            <h3>Dr. Rishabh Chaudhary</h3>
+                            <p class="designation">Radiology Specialist</p>
+                            <p class="specialization">Specialization: Diagnostic Imaging</p>
+                            <div class="expert-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                <span>(19 reviews)</span>
+                            </div>
+                            <button class="book-btn">Book Appointment</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Appointment Form -->
+                <form id="appointmentForm" class="form-group" style="display:none;">
+                    <h3>Appointment Details</h3>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="appointmentDate">Date</label>
+                            <input type="date" id="appointmentDate" required />
+                        </div>
+                        <div class="form-col">
+                            <label for="appointmentTime">Time</label>
+                            <input type="time" id="appointmentTime" required />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="reportUpload">Upload Medical Reports (Optional)</label>
+                        <input type="file" id="reportUpload" accept=".pdf,.jpg,.jpeg,.png" />
+                    </div>
+                    
+                    <div class="form-row">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" placeholder="Describe your symptoms or concerns"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Confirm Appointment</button>
+                </form>
+            </div>
+            
+            <!-- Notification Popup -->
+            <div id="notificationPopup" class="popup" style="display:none;">
+                <div class="popup-content">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h3>Appointment Request Sent!</h3>
+                    <p>You will be notified within 24 hours regarding your appointment confirmation.</p>
+                    <button id="closePopup" class="btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

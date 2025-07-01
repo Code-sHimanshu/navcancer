@@ -141,3 +141,193 @@ window.addEventListener('scroll', () => {
 window.addEventListener('load', () => {
   handleScrollAnimation();
 });
+
+// Human Interface Modal Logic (API Connected)
+if (window.location.pathname.endsWith('human_interface.html')) {
+  const modal = document.getElementById('humanInterfaceModal');
+  const closeBtn = document.getElementById('closeHumanModal');
+  const authSection = document.getElementById('authSection');
+  const mainSection = document.getElementById('mainSection');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  const loginTab = document.getElementById('loginTab');
+  const signupTab = document.getElementById('signupTab');
+  const authError = document.getElementById('authError');
+  const expertsList = document.querySelector('.experts-list');
+  const appointmentForm = document.getElementById('appointmentForm');
+  const notificationPopup = document.getElementById('notificationPopup');
+  const closePopup = document.getElementById('closePopup');
+
+  let currentUser = null;
+  let selectedExpertId = null;
+
+  // Show modal on load
+  modal.style.display = 'block';
+
+  // Close modal
+  closeBtn.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  // Switch between login and signup tabs
+  loginTab.onclick = () => {
+    loginTab.classList.add('active');
+    signupTab.classList.remove('active');
+    loginForm.style.display = 'block';
+    signupForm.style.display = 'none';
+    authError.textContent = '';
+  };
+  signupTab.onclick = () => {
+    signupTab.classList.add('active');
+    loginTab.classList.remove('active');
+    signupForm.style.display = 'block';
+    loginForm.style.display = 'none';
+    authError.textContent = '';
+  };
+
+  // Signup API
+  signupForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    if (password.length < 6) {
+      authError.textContent = 'Password must be at least 6 characters';
+      return;
+    }
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/signup/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ first_name: name, email, password })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        authError.textContent = 'Signup successful! Please login.';
+        loginTab.click();
+        signupForm.reset();
+      } else {
+        authError.textContent = data.error || 'Signup failed.';
+      }
+    } catch (err) {
+      authError.textContent = 'Network error.';
+    }
+  };
+
+  // Login API
+  loginForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/login/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        currentUser = email;
+        authSection.style.display = 'none';
+        mainSection.style.display = 'block';
+        authError.textContent = '';
+        loadExperts();
+      } else {
+        authError.textContent = data.error || 'Login failed.';
+      }
+    } catch (err) {
+      authError.textContent = 'Network error.';
+    }
+  };
+
+  // Load experts from backend
+  async function loadExperts() {
+    expertsList.innerHTML = '<p>Loading experts...</p>';
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/experts/');
+      const data = await res.json();
+      if (res.ok && data.experts.length) {
+        expertsList.innerHTML = '';
+        data.experts.forEach(expert => {
+          const card = document.createElement('div');
+          card.className = 'card expert-card';
+          card.innerHTML = `
+            <img src="${expert.photo || 'assets/expert1.jpg'}" alt="${expert.name}" class="expert-photo" />
+            <div class="expert-info">
+              <h3>${expert.name}</h3>
+              <p class="designation">${expert.designation}</p>
+              <p class="specialization">Specialization: ${expert.specialization}</p>
+              <div class="expert-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                <span>(${expert.reviews} reviews)</span>
+              </div>
+              <button class="book-btn" data-expert="${expert.id}">Book Appointment</button>
+            </div>
+          `;
+          expertsList.appendChild(card);
+        });
+        // Add event listeners for book buttons
+        document.querySelectorAll('.book-btn').forEach(btn => {
+          btn.onclick = (e) => {
+            selectedExpertId = btn.getAttribute('data-expert');
+            appointmentForm.style.display = 'block';
+            appointmentForm.scrollIntoView({ behavior: 'smooth' });
+          };
+        });
+      } else {
+        expertsList.innerHTML = '<p>No experts found.</p>';
+      }
+    } catch (err) {
+      expertsList.innerHTML = '<p>Failed to load experts.</p>';
+    }
+  }
+
+  // Appointment form submit (API)
+  appointmentForm.onsubmit = async (e) => {
+    e.preventDefault();
+    if (!selectedExpertId) {
+      alert('Please select an expert.');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('email', currentUser);
+    formData.append('expert_id', selectedExpertId);
+    formData.append('date', document.getElementById('appointmentDate').value);
+    formData.append('time', document.getElementById('appointmentTime').value);
+    formData.append('additional_info', document.getElementById('additionalInfo').value);
+    const reportFile = document.getElementById('reportUpload').files[0];
+    if (reportFile) formData.append('report', reportFile);
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/appointments/', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (res.ok) {
+        appointmentForm.reset();
+        appointmentForm.style.display = 'none';
+        notificationPopup.style.display = 'flex';
+      } else {
+        alert(data.error || 'Failed to book appointment.');
+      }
+    } catch (err) {
+      alert('Network error.');
+    }
+  };
+
+  // Close notification popup
+  closePopup.onclick = () => {
+    notificationPopup.style.display = 'none';
+    mainSection.style.display = 'block';
+  };
+
+  // Close modal when clicking outside
+  window.onclick = (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+    if (e.target === notificationPopup) {
+      notificationPopup.style.display = 'none';
+    }
+  };
+}
