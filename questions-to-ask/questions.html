@@ -161,77 +161,102 @@
     </header>
 
 
-    <!-- 🧭 NAVIGATION BAR -->
-    <nav class="navbar">
-      <ul class="nav-list">
-        <!-- HOME -->
-        <li class="nav-item">
-          <a class='nav-title' href='/'>Home</a>
-        </li>
+  <!-- 🧭 NAVIGATION BAR -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <!-- HOME -->
+      <li class="nav-item">
+        <a href="/index.html" class="nav-title">Home</a>
+      </li>
 
-        <!-- KNOW ABOUT CANCER -->
-        <li class="nav-item has-dropdown">
-          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
-            <span class="nav-title">About Us<span class="arrow">▼</span></span>
-            <div class="dropdown" id="cancer-dropdown">
-              <ul class="dropdown-list" id="cancer-options">
-                <li><a class='dropdown-item' href='/about'>History</a></li>
-                <li><a class='dropdown-item' href='/profile'>Profile</a></li>
-                <li><a class='dropdown-item' href='/faq'>FAQs</a></li>
-                <li><a class='dropdown-item' href='/board'>Administration</a></li>
-              </ul>
-            </div>
+      <!-- KNOW ABOUT CANCER -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'cancer-dropdown', this)">
+          <span class="nav-title">About Us<span class="arrow">▼</span></span>
+          <div class="dropdown" id="cancer-dropdown">
+            <ul class="dropdown-list" id="cancer-options">
+              <li><a href="/about.html" class="dropdown-item">History</a></li>
+              <li>
+                <a href="/profile.html" class="dropdown-item">Profile</a>
+              </li>
+              <li><a href="../questions-to-ask/questions-category.html" class="dropdown-item">FAQs</a></li>
+              <li>
+                <a href="/board.html" class="dropdown-item">Administration</a>
+              </li>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- SERVICES OFFERED -->
-        <li class="nav-item has-dropdown">
-          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
-            <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
-            <div class="dropdown" id="faicilities-dropdown">
-              <ul class="dropdown-list" id="faicilities-options">
-                <a href="https://lungscan-ai.streamlit.app" class="dropdown-item">AI based Prediction</a>
-                <a class='dropdown-item' href='/esr'>Connect with experts</a>
-                <a class='dropdown-item' href='/esr'>Research & Development</a>
-                <a href="#" class="dropdown-item">Government Schemes</a>
-              </ul>
-            </div>
+      <!-- SERVICES OFFERED -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'faicilities-dropdown')">
+          <span class="nav-title">Services Offered<span class="arrow">▼</span></span>
+          <div class="dropdown" id="faicilities-dropdown">
+            <ul class="dropdown-list" id="faicilities-options">
+              <a href="nav-pages/care-hub.html" class="dropdown-item">Care Hub</a>
+              <a href="#" class="dropdown-item">Research and Innovation Hub</a>
+              <a href="./nav-pages/information-and-facility-hub.html" class="dropdown-item">Information and Facility Hub</a>
+            </ul>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <!-- Events -->
-        <li class="nav-item has-dropdown">
-          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
-            <span class="nav-title">Events<span class="arrow">▼</span></span>
-            <div class="dropdown" id="events-dropdown">
-              <ul class="dropdown-list" id="events-options">
-                <li><a class='dropdown-item' href='/events'>All Events</a></li>
-                <li><a class='dropdown-item' href='/gallery'>Gallery</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
+      <!-- OTHER STATIC LINKS -->
 
-        <!-- External Links -->
-        <li class="nav-item has-dropdown">
-          <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
-            <span class="nav-title">External Links<span class="arrow">▼</span></span>
-            <div class="dropdown" id="main-dropdown">
-              <ul class="dropdown-list" id="main-options">
-                <li><a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a></li>
-                <li><a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a></li>
-                <li><a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a></li>
-                <li><a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a></li>
-                <li><a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a></li>
-                <li><a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a></li>
-                <li><a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a></li>
-                <li><a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a></li>
-              </ul>
-            </div>
+      <!-- Events -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'events-dropdown', this)">
+          <span class="nav-title">Events<span class="arrow">▼</span></span>
+          <div class="dropdown" id="events-dropdown">
+            <ul class="dropdown-list" id="events-options">
+              <li>
+                <a href="/events.html" class="dropdown-item">All Events</a>
+              </li>
+              <li>
+                <a href="/gallery.html" class="dropdown-item">Gallery</a>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </li>
+
+      <!-- main website -->
+      <li class="nav-item has-dropdown">
+        <div class="dropdown-wrapper" onclick="toggleDropdown(event, 'main-dropdown', this)">
+          <span class="nav-title">External Links<span class="arrow">▼</span></span>
+          <div class="dropdown" id="main-dropdown">
+            <ul class="dropdown-list" id="main-options">
+              <li>
+                <a class="dropdown-item" href="https://shuats.edu.in/" target="_blank">SHUATS</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://unite4cancer.com/" target="_blank">ICPC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.mohfw.gov.in/" target="_blank">MOHFW</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.icmr.gov.in/" target="_blank">ICMR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dbtindia.gov.in/" target="_blank">DBT</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dst.gov.in/" target="_blank">DST</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.csir.res.in/" target="_blank">CSIR</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://dhr.gov.in/" target="_blank">DHR</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
     <!-- Back Button -->
     <div class="back-button-container">
         <a href="questions-category.html" class="back-button">
