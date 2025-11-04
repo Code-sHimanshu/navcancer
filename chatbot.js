@@ -401,7 +401,7 @@ class Chatbot {
             this.addMessage("I can help you with our AI Prediction Tool. Would you like to:", 'bot');
             this.addMessage(`
                 <div class="chatbot-buttons-container">
-                    <button class="chatbot-nav-button" onclick="window.location.href='https://navcancer-ai-lungscan.onrender.com/'">Open AI Prediction Tool</button>
+                    <button class="chatbot-nav-button" onclick="window.location.href='https://lung-cancer.ktripathi.site/'">Open AI Prediction Tool</button>
                     <button class="chatbot-nav-button" onclick="window.location.href='ai-prediction-guide.html'">Learn More About AI Predictions</button>
                 </div>
             `, 'bot');
@@ -457,7 +457,7 @@ class Chatbot {
             {
                 keywords: ['ai-based', 'prediction', 'ai', 'prediction', 'tool', 'diagnosis', 'predict', 'forecast', 'analyze', 'analysis'],
                 action: () => {
-                    window.open('https://navcancer-ai-lungscan.onrender.com/', '_blank');
+                    window.open('https://lung-cancer.ktripathi.site/', '_blank');
                 },
                 matchType: 'every'
             },
