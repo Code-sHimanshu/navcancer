@@ -8,10 +8,85 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="./chatbot.js" defer></script>
+  <style>
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #333;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification i {
+      color: #4caf50;
+    }
+
+    .contact-btn {
+      position: relative;
+    }
+
+    .contact-btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .loading-spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #ffffff;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .success-message {
+      background: #4caf50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .success-message.show {
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
- 
+
   <!-- Human Assistant Button Bottom Right -->
   <div class="assistant-container">
     <button class="assistant-btn" onclick="connectToAssistant()">
@@ -207,66 +282,130 @@
     </section>
 
     <!-- Testimonials Section -->
-<section class="testimonials-section">
-  <h2 class="section-title">What People Say</h2>
-  <div class="testimonials-container">
-    <div class="testimonial-card">
-      <p class="testimonial-text">
-        "This platform has been a lifesaver for me. The resources and support I received were invaluable during my treatment."
-      </p>
-      <h4 class="testimonial-author">- John Doe</h4>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">
-        "As a healthcare professional, I found the AI-based prediction tool extremely helpful in diagnosing early-stage cancer."
-      </p>
-      <h4 class="testimonial-author">- Dr. Jane Smith</h4>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">
-        "The information provided here is comprehensive and easy to understand. Highly recommended for patients and families."
-      </p>
-      <h4 class="testimonial-author">- Emily Johnson</h4>
-    </div>
-  </div>
-</section>
+    <section class="testimonials-section">
+      <h2 class="section-title">What People Say</h2>
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "This platform has been a lifesaver for me. The resources and support I received were invaluable during my treatment."
+          </p>
+          <h4 class="testimonial-author">- John Doe</h4>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "As a healthcare professional, I found the AI-based prediction tool extremely helpful in diagnosing early-stage cancer."
+          </p>
+          <h4 class="testimonial-author">- Dr. Jane Smith</h4>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "The information provided here is comprehensive and easy to understand. Highly recommended for patients and families."
+          </p>
+          <h4 class="testimonial-author">- Emily Johnson</h4>
+        </div>
+      </div>
+    </section>
 
-<!-- Our Partners Section -->
-<section class="partners-section">
-  <h2 class="section-title">Our Partners</h2>
-  <div class="partners-container">
-    <img src="assets/event1.jpg" alt="Partner 1" class="partner-logo" />
-    <img src="assets/event2.jpg" alt="Partner 2" class="partner-logo" />
-    <img src="assets/event3.jpg" alt="Partner 3" class="partner-logo" />
-    <img src="assets/event4.jpg" alt="Partner 4" class="partner-logo" />
-  </div>
-</section>
+    <!-- Our Partners Section -->
+    <section class="partners-section">
+      <h2 class="section-title">Our Partners</h2>
+      <div class="partners-container">
+        <img src="assets/event1.jpg" alt="Partner 1" class="partner-logo" />
+        <img src="assets/event2.jpg" alt="Partner 2" class="partner-logo" />
+        <img src="assets/event3.jpg" alt="Partner 3" class="partner-logo" />
+        <img src="assets/event4.jpg" alt="Partner 4" class="partner-logo" />
+      </div>
+    </section>
 
-<!-- Contact Us Section -->
-<section class="contact-section">
-  <h2 class="section-title">Get in Touch</h2>
-  <div class="contact-container">
-    <form class="contact-form">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Your Name" required />
+    <!-- Contact Us Section -->
+    <section class="contact-section">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-container">
+        <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="contact-btn">Send Message</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Your Email" required />
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      </div>
-      <button type="submit" class="contact-btn">Send Message</button>
-    </form>
-  </div>
-</section>
+    </section>
+
+    <!-- Notification Element -->
+    <div class="notification" id="notification">
+      <i class="fas fa-check-circle"></i>
+      <span>Message sent successfully!</span>
+    </div>
 
   </main>
 
   <script src="./script.js"></script>
+
+  <script>
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const button = form.querySelector('button[type="submit"]');
+      const notification = document.getElementById('notification');
+
+      // Disable button
+      button.disabled = true;
+      button.textContent = 'Sending...';
+
+      try {
+        // Get form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        // Log the form data (simulating server submission)
+        console.log('Form data:', data);
+
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Show notification
+        notification.classList.add('show');
+
+        // Clear form
+        form.reset();
+
+        // Reset button
+        button.disabled = false;
+        button.textContent = 'Send Message';
+
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 3000);
+
+      } catch (error) {
+        console.error('Error:', error);
+        button.disabled = false;
+        button.textContent = 'Send Message';
+
+        // Show error notification
+        notification.innerHTML = `
+      <i class="fas fa-exclamation-circle" style="color: #ff4444;"></i>
+      <span>Failed to send message. Please try again.</span>
+    `;
+        notification.classList.add('show');
+
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 3000);
+      }
+    }
+  </script>
+
 </body>
 
 </html>
